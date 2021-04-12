@@ -26,11 +26,8 @@
         </div>
         <button [disabled]="loading" class="btn btn-primary" type="submit">
             Log In
-            <span>
-                <div class="spinner-grow text-primary" role="status" *ngIf="loading">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-            </span>
+            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            
         </button>        
     </form>
 

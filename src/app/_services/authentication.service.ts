@@ -11,7 +11,7 @@ export class AuthenticationService {
 
   public currentUserSubject : BehaviorSubject<LoogedInUser>;
 
-  constructor(private http : HttpClient) {debugger
+  constructor(private http : HttpClient) {
     let loggedInUser = null
     if(localStorage.getItem("loggedInUser")){
       loggedInUser = this.createLoggedInUserFromResponse(localStorage.getItem("loggedInUser"))

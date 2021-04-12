@@ -1,1 +1,60 @@
-<p>register-user works!</p>
+<div class="register-container">
+
+    <div class="container-header">
+        <h2 class="header-content"> Register </h2>
+    </div>
+    <hr>
+    <div class="container-body">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="fullName-label">Full Name</span>
+                </div>
+                <input class="form-control " type="text" formControlName="name" 
+                placeholder="John Doe" aria-label="Recipient's " aria-describedby="fullName-label">                
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="dob-label">Date of Birth</span>
+                </div>
+                <input class="form-control " type="date" formControlName="dob" 
+                placeholder="" aria-label="Recipient's " aria-describedby="dob-label">                
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="email-label">Email</span>
+                </div>
+                <input class="form-control " type="email" formControlName="email" 
+                placeholder="abc@xyz.com" aria-label="Recipient's " aria-describedby="email-label">                
+            </div>
+            
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="pass-label">Password</span>
+                </div>
+                <input class="form-control " type="password" formControlName="pass" 
+                placeholder="" aria-label="Recipient's " aria-describedby="pass-label">                
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="confPass-label">Confirm Password</span>
+                </div>
+                <input class="form-control " type="password" formControlName="confirmPassword" 
+                placeholder="" aria-label="Recipient's " aria-describedby="confPass-label">                
+            </div>
+
+            <button [disabled]="loading" class="btn btn-primary" type="submit" >
+                Register
+                <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            </button>        
+        </form>
+    </div>
+    <div class="contain-footer">
+        <div><a routerLink="/login">Cancel</a></div>
+    </div>
+    
+    </div>

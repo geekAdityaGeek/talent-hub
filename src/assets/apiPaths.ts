@@ -5,7 +5,8 @@ export class ApiPaths{
         login : 'user/login',
         logoutAllSession : 'user/logoutall',
         logout : 'user/logout' ,
-        forgetPassword : "user/forgotpassword"
+        forgetPassword : "user/forgotpassword",
+        registerUser : "user"
     } 
     
 

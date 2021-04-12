@@ -11,6 +11,7 @@ import { RegisterUserComponent } from './app-components/register-user/register-u
 import { ForgetPasswordComponent } from './app-components/forget-password/forget-password.component';
 import { UserComponent } from './app-components/user/user.component';
 import { jwtInterceptor } from './_helpers/jwt.interceptor';
+import { AlertComponent } from './_components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { jwtInterceptor } from './_helpers/jwt.interceptor';
     LoginComponent,
     RegisterUserComponent,
     ForgetPasswordComponent,
-    UserComponent    
+    UserComponent,
+    AlertComponent    
   ],
   imports: [
     BrowserModule,

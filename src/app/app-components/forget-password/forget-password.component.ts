@@ -22,6 +22,10 @@ export class ForgetPasswordComponent implements OnInit {
   }
 
   updatePassword(){
+
+    if(!this.forgetPasswordForm.valid)
+      return false
+      
     this.loading = true
     let updatePassPromise = this.authenticationService.forgetPassword(this.forgetPasswordForm.get('email').value)
     updatePassPromise.then(
