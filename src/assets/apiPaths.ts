@@ -1,6 +1,6 @@
 export class ApiPaths{
 
-    private static baseRef = ""
+    private static baseRef = "https://talenthub-api.herokuapp.com"
     private static url = {
         login : 'user/login',
         logoutAllSession : 'user/logoutall',

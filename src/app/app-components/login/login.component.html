@@ -1,0 +1,43 @@
+<div class="login-container">
+
+<div class="container-header">
+    <h2 class="header-content"> Login </h2>
+</div>
+<hr>
+<div class="container-body">
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="email-label">Email</span>
+            </div>
+            <input class="form-control " type="email" 
+            formControlName = 'email'
+            placeholder="abc@xyz.com" aria-label="Recipient's " aria-describedby="email-label">
+            
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="pass-label">Password</span>
+            </div>
+            <input class="form-control" type="password" 
+            formControlName = 'password'
+            placeholder="" aria-label="Recipient's " aria-describedby="pass-label">
+        </div>
+        <button [disabled]="loading" class="btn btn-primary" type="submit">
+            Log In
+            <span>
+                <div class="spinner-grow text-primary" role="status" *ngIf="loading">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+            </span>
+        </button>        
+    </form>
+
+</div>
+<div class="contain-footer">
+    <div><a routerLink="/forgetPassword">Forgot Password</a></div>
+    <div><a routerLink="/register">Register User</a></div>
+</div>
+
+</div>

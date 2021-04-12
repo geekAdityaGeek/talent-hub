@@ -1,0 +1,19 @@
+<div *ngIf="currentUser; else notLoggedIn">
+<button (click)=logout()> Logout</button>
+</div>
+<ng-template #notLoggedIn>
+    <div class="row">
+        <div class="col-6">
+            this is a separate sections
+        </div>
+        <div class="col-6">
+            <div class="card router-oulet">
+                <div class="card-body">
+                    <router-outlet></router-outlet>                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+</ng-template>

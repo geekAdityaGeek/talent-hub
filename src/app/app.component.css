@@ -1,0 +1,9 @@
+.router-oulet{
+    height: 100vh;
+}
+
+.card{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
