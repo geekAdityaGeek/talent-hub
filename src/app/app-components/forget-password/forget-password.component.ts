@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgetPasswordComponent implements OnInit {
 
-  constructor() { }
+  loading = false
+  forgetPasswordForm : FormGroup
+  
+
+  constructor(private authenticationService : AuthenticationService) { }
 
   ngOnInit() {
+    this.forgetPasswordForm = new FormGroup({
+      'email' : new FormControl(null, [Validators.required, Validators.email])
+    })
+  }
+
+  updatePassword(){
+    this.loading = true
+    let updatePassPromise = this.authenticationService.forgetPassword(this.forgetPasswordForm.get('email').value)
+    updatePassPromise.then(
+      response => {   console.log(response)   }
+    ).catch(
+      error => { console.log(error) }
+    ).finally(
+      ()=>{this.loading = false}
+    )
   }
 
 }

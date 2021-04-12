@@ -28,28 +28,26 @@ export class AuthenticationService {
     return loggedInUser
   }
 
+  public setLoggedInUser(response) : void {
+    let loggedInUser = this.createLoggedInUserFromResponse(response)
+    this.currentUserSubject.next(loggedInUser)
+  }
+
   public getLoggedInUser() : LoogedInUser{
     return this.currentUserSubject.value
   }
 
-  login(email : string, password : string){
+  login(email : string, password : string) : Promise<any>{
     let data = { email: email, password : password}
-    return this.http.post<any>(ApiPaths.getApiPath("login", undefined), data).subscribe(
-      (response) => {
-        console.log(response)
-        localStorage.setItem("loggedInUser", response) 
-        let loggedInUser = this.createLoggedInUserFromResponse(response)
-        this.currentUserSubject.next(loggedInUser)
-        return true
-      },
-      (error) => {
-        return false
-      }
-    )
+    return this.http.post<any>(ApiPaths.getApiPath("login", undefined), data).toPromise()
   }
 
   logout(){
     localStorage.clear()
     this.currentUserSubject.next(null)
+  }
+
+  forgetPassword(email : string) : Promise<any>{
+    return this.http.post<any>(ApiPaths.getApiPath("forgetPassword", undefined), {email : email}).toPromise()
   }
 }

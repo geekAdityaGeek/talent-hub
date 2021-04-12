@@ -33,22 +33,21 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login(){debugger
+  login(){
 
     if(!this.loginForm.valid)
       return false;
 
     this.loading = true
-    this.authenticationService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
-    .add( isSuccessfullLogin => { 
-      if(isSuccessfullLogin){
-        this.router.navigate([this.returnUrl]);
-      }else{
-        this.loading = false
-      }
+    let loginPromise : Promise<any> = this.authenticationService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
+    loginPromise.then( response => {
+      console.log(response)
+      localStorage.setItem("loggedInUser", response) 
+      this.authenticationService.setLoggedInUser(response)
+    }).catch(error => {
+      console.log(error)
+      this.loading = false
     })
-    
-
 
   }
 

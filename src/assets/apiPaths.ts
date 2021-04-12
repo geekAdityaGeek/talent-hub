@@ -4,7 +4,8 @@ export class ApiPaths{
     private static url = {
         login : 'user/login',
         logoutAllSession : 'user/logoutall',
-        logout : 'user/logout' 
+        logout : 'user/logout' ,
+        forgetPassword : "user/forgotpassword"
     } 
     
 
