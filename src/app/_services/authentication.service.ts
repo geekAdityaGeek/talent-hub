@@ -14,7 +14,7 @@ export class AuthenticationService {
     this.http.post<any>(ApiPaths.getApiPath("login", undefined), data).subscribe(
       (response) => {
         response.user.password = ""
-        localStorage.setItem("loginUser", response)
+        localStorage.setItem("logedInUser", response)
         return true
       },
       (error) => {
