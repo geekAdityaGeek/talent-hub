@@ -6,8 +6,12 @@
     min-height : 80vh;
 }
 
+
 a.nav-link{
-    font-size: medium;
+    font-size: small;
+    font-weight: bold;
+    padding-left : 0px;
+    
 }
 
 li.nav-item:hover{
