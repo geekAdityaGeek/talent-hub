@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ApiPaths } from 'src/assets/apiPaths';
+import { AccomplishmentsComponent } from '../app-components/user/profile/accomplishments/accomplishments.component';
+import { Accomplishment } from '../_model/accomplishment';
 import { Connection } from '../_model/connection';
 import { User } from '../_model/user';
 
@@ -29,6 +31,34 @@ export class UserService {
     connection.profilePicUrl = response.profilePicUrl
     connection.following = response.following;
     return connection
+  }
+
+  public formAccomplishmentFromResponse(response : any) : Accomplishment{
+    let accomplishment : Accomplishment = new Accomplishment()
+    accomplishment.id = response._id
+    accomplishment.title = response.title
+    accomplishment.description = response.description
+    accomplishment.accomplishmentDate = response.date
+    return accomplishment
+  }
+
+  public formUserFromResponse(response) : User{
+    let user : User = new User()
+    user.id = response._id
+    user.name = response.name
+    user.email = response.email
+    user.dob = response.dob
+    user.addressLine1 = response.addressLine1
+    user.state = response.state
+    user.country = response.country
+    user.mobileNumber = response.mobileNumber
+    user.domain_ids = response.domain_ids
+    user.accomplishments = new Array<Accomplishment>()
+    for(let idx in response.accomplishments ){
+      user.accomplishments.push(this.formAccomplishmentFromResponse(response.accomplishments))
+    } 
+     
+    return user
 
   }
 
@@ -57,4 +87,16 @@ export class UserService {
     return this.http.get<any>(ApiPaths.getApiPath("getFollowers",undefined)).toPromise()
   }
 
+  public updateUser(data : any) : Promise<any> {
+    return this.http.patch<any>(ApiPaths.getApiPath("updateUser", undefined), data).toPromise()
+  }
+
+  public getUserDetails() : Promise<any>{
+    return this.http.get<any>(ApiPaths.getApiPath("getUserDetails", undefined)).toPromise()
+  }
+
+  public getUserInterests() : Promise<any>{
+    return this.http.get<any>(ApiPaths.getApiPath("getUserInterests", undefined)).toPromise()
+
+  }
 }

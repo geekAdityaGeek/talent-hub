@@ -14,7 +14,10 @@ export class ApiPaths{
         follow : "follow/#",
         unfollow : "unfollow/#",
         getFollowees : "followees",
-        getFollowers : "follower"
+        getFollowers : "follower",
+        updateUser : "user/me",
+        getUserDetails : "user/me",
+        getUserInterests : "user/domains" 
     } 
     
 

@@ -23,6 +23,7 @@ import { ConnectionCardComponent } from './_components/connection-card/connectio
 import { BasicDetailsComponent } from './app-components/user/profile/basic-details/basic-details.component';
 import { AccomplishmentsComponent } from './app-components/user/profile/accomplishments/accomplishments.component';
 import { SettingsComponent } from './app-components/user/profile/settings/settings.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { SettingsComponent } from './app-components/user/profile/settings/settin
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: jwtInterceptor, multi: true },],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: jwtInterceptor, multi: true },DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,29 @@
-<p>accomplishments works!</p>
+<form [formGroup]="accomplishmentForm">
+    
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="title">Title</span>
+        </div>
+        <input class="form-control" type="text" formControlName = 'title'
+        placeholder="" aria-label="" aria-describedby="title">
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="description">Description</span>
+        </div>
+        <textarea class="form-control" type="text" formControlName = 'description'
+        placeholder="" aria-label="" aria-describedby="description"></textarea>
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="accomplishmentDate">Accomplishment Date</span>
+        </div>
+        <input class="form-control" type="date" formControlName = 'accomplishmentDate'
+        placeholder="" aria-label="" aria-describedby="accomplishmentDate">
+    </div>
+    
+</form>
+<hr/>
+<div></div>

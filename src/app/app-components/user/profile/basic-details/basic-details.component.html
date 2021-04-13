@@ -1,1 +1,156 @@
-<p>basic-details works!</p>
+<form [formGroup]="basicDetailsForm">
+
+    <label class="hoverable" for="fileInput">
+        <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
+        <div class="hover-text">Choose file</div>
+        <div class="background"></div>
+      </label>
+      <br/>
+      <input id="fileInput" type='file' (change)="onSelectFile($event)">
+      <button *ngIf="url" (click)="delete()" >delete</button>
+
+    <h5>Basic Information</h5>
+    <hr/>
+    <div class="row">
+        <div class="col-6">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="name">Name</span>
+                </div>
+                <input class="form-control" type="text" formControlName="name"
+                placeholder="" aria-label="" aria-describedby="name">    
+                <div class="input-group-append">
+                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('name').valid || editableFeilds['name']"
+                    (click)="saveDetails({name : basicDetailsForm.get('name').value}, 'name')">
+                        save
+                        <span *ngIf="editableFeilds['name']" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="dob">Date of Birth</span>
+                </div>
+                <input class="form-control" type="date" [disabled]=true [value]="nonEditableFeilds.dob"
+                placeholder="" aria-label="" aria-describedby="dob">        
+            </div>
+
+        </div>
+        <div class="col-6">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="email">Email</span>
+                </div>
+                <input class="form-control" type="text" [disabled]=true [value]='nonEditableFeilds.email'
+                placeholder="" aria-label="" aria-describedby="email">        
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="mobileNumber">Mobile Number</span>
+                </div>
+                <input class="form-control" type="text"  formControlName="mobileNumber"
+                placeholder="" aria-label="" aria-describedby="mobileNumber">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('mobileNumber').valid || editableFeilds['mobileNumber']"
+                    (click)="saveDetails({mobileNumber : basicDetailsForm.get('mobileNumber').value}, 'mobileNumber')">
+                        save
+                        <span *ngIf="editableFeilds['mobileNumber']" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <h5>Address Information</h5>
+    <hr/>
+    <div class="row">
+        <div class="col-6">
+
+            
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addressLine1">Address Line 1</span>
+                </div>
+                <input class="form-control" type="text" formControlName="addressLine1"
+                placeholder="" aria-label="" aria-describedby="addressLine1">  
+                <div class="input-group-append">
+                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('addressLine1').valid || editableFeilds['addressLine1']"
+                    (click)="saveDetails({addressLine1 : basicDetailsForm.get('addressLine1').value}, 'addressLine1')">
+                        save
+                        <span *ngIf="editableFeilds['addressLine1']" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    </button>
+                </div>      
+            </div>
+            
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="country">Country</span>
+                </div>
+                <input class="form-control" type="text" formControlName="country"
+                placeholder="" aria-label="" aria-describedby="country">  
+                <div class="input-group-append">
+                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('country').valid || editableFeilds['country']"
+                    (click)="saveDetails({country : basicDetailsForm.get('country').value}, 'country')">
+                        save
+                        <span *ngIf="editableFeilds['country']" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    </button>      
+                </div>
+            </div>
+            
+
+        </div>
+        <div class="col-6">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="state">State</span>
+                </div>
+                <input class="form-control" type="text" formControlName="state"
+                placeholder="" aria-label="" aria-describedby="state">  
+                <div class="input-group-append">
+                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('state').valid || editableFeilds['state']"
+                    (click)="saveDetails({state : basicDetailsForm.get('state').value}, 'state')">
+                        save
+                        <span *ngIf="editableFeilds['state']" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    </button>  
+                </div>    
+            </div>
+        
+        </div>
+        
+
+    </div>
+
+    <h5>Interests</h5>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="interest">Interest</span>
+                </div>
+                <select class="form-control" formControlName='interest'
+                placeholder="" aria-label="" aria-describedby="interest">  
+                    <option *ngFor="let domain of domains" value="{{domain.id}}">{{domain.name}}</option>
+                </select>   
+                <div class="input-group-append">
+                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('interest').valid || editableFeilds['interest']"
+                    (click)="addInterest()">
+                        Add
+                        <span *ngIf="editableFeilds['interest']" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    </button>  
+                </div> 
+            </div>
+            <span class="btn btn-primary badge-btn" *ngFor="let domainInterest of userDomainInterests; let idx = index">
+                {{domainInterest.name}} <span class= "badge badge-light" (click)="delete(idx)">X</span>
+            </span>
+        </div>
+
+    </div>
+
+
+
+
+</form>

@@ -1,1 +1,27 @@
-<p>settings works!</p>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Update Password</h5>
+        <hr>
+        <form [formGroup]="upadtePasswordForm" (ngSubmit)="updatePassword()">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="password">Password</span>
+                </div>
+                <input class="form-control" type="password" placeholder="" 
+                formControlName="password" aria-label="" aria-describedby="password">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="password">Confirm Password</span>
+                </div>
+                <input class="form-control" type="password" placeholder="" 
+                formControlName="confirmPassword" aria-label="" aria-describedby="password">
+            </div>
+            <button class="btn btn-primary btn-sm" type="submit" [disabled]="loading">
+                Update Password
+                <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            </button>
+        </form>
+    </div>
+</div>
+

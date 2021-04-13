@@ -1,6 +1,7 @@
 import { Accomplishment } from "./accomplishment"
 
 export class User{
+    id: string
     name : string
     password : string
     dob : Date 
