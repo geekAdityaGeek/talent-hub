@@ -11,6 +11,7 @@ import { FeedsService } from 'src/app/_services/feeds.service';
 })
 export class FeedsComponent implements OnInit {
 
+  currentIndex = 0
   domainLoading = false
   postsLoading = false
   domains : Array<Domain> = new Array<Domain>()
@@ -34,7 +35,7 @@ export class FeedsComponent implements OnInit {
             let post : Post = this.feedsService.convertToPost(response[idx])
             this.posts.push(post)
           }
-
+          console.log(this.posts)
         }).catch( error => { console.log(error)} )
         .finally(()=>{ this.postsLoading = false })
       }

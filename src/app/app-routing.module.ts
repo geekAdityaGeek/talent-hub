@@ -4,6 +4,9 @@ import { ForgetPasswordComponent } from './app-components/forget-password/forget
 import { LoginComponent } from './app-components/login/login.component';
 import { RegisterUserComponent } from './app-components/register-user/register-user.component';
 import { ConnectionsComponent } from './app-components/user/connections/connections.component';
+import { FollowerComponent } from './app-components/user/connections/follower/follower.component';
+import { FollowingComponent } from './app-components/user/connections/following/following.component';
+import { NewConnectionsComponent } from './app-components/user/connections/new-connections/new-connections.component';
 import { FeedsComponent } from './app-components/user/feeds/feeds.component';
 import { ProfileComponent } from './app-components/user/profile/profile.component';
 import { UserComponent } from './app-components/user/user.component';
@@ -17,7 +20,13 @@ const routes: Routes = [
   { path: '', canActivate : [AuthGaurd], children:[
     {path : '', pathMatch:"full", redirectTo:"feeds"},
     {path : 'feeds', component:FeedsComponent},
-    {path : 'connections', component:ConnectionsComponent},
+    {path : 'connections', component:ConnectionsComponent, children:[
+      {path : '', pathMatch:"full", redirectTo:"following"},
+      {path : 'following', component:FollowingComponent},
+      {path : 'follower', component:FollowerComponent},
+      {path : 'newconnections', component:NewConnectionsComponent},
+
+    ]},
     {path : 'profile', component:ProfileComponent},
   ]},  
   { path: '**', redirectTo: '' }

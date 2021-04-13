@@ -15,6 +15,10 @@ import { AlertComponent } from './_components/alert/alert.component';
 import { FeedsComponent } from './app-components/user/feeds/feeds.component';
 import { ConnectionsComponent } from './app-components/user/connections/connections.component';
 import { ProfileComponent } from './app-components/user/profile/profile.component';
+import { PostCardComponent } from './_components/post-card/post-card.component';
+import { FollowingComponent } from './app-components/user/connections/following/following.component';
+import { FollowerComponent } from './app-components/user/connections/follower/follower.component';
+import { NewConnectionsComponent } from './app-components/user/connections/new-connections/new-connections.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { ProfileComponent } from './app-components/user/profile/profile.componen
     AlertComponent,
     FeedsComponent,
     ConnectionsComponent,
-    ProfileComponent    
+    ProfileComponent,
+    PostCardComponent,
+    FollowingComponent,
+    FollowerComponent,
+    NewConnectionsComponent    
   ],
   imports: [
     BrowserModule,

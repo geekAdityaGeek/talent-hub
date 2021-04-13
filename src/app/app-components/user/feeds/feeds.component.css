@@ -14,3 +14,11 @@ li.nav-item:hover{
     border-bottom: 1px solid lightblue;
     cursor: pointer;
 }
+
+.btn{
+    border-radius: 50%;
+}
+
+.btn.next{
+    float: right;
+}
