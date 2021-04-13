@@ -1,7 +1,14 @@
-<div class="row" *ngFor="let idx_i of counter(searchGroupContentCount)">
-    <div class="col-4" *ngFor="let idx_j of counter(groupCount)">
-        <connection-card [connection]="connections[idx_i*groupCount+idx_j]" 
-        (followUnfollow)="connectionAction($event, idx_i*groupCount+idx_j)"
-        [processing]="processing[idx_i*groupCount+idx_j]"></connection-card>
+<div *ngIf="!loading; else loadingSection">
+    <div class="row" *ngFor="let idx_i of counter(searchGroupContentCount)">
+        <div class="col-4" *ngFor="let idx_j of counter(groupCount)">
+            <connection-card [connection]="connections[idx_i*groupCount+idx_j]" 
+            (followUnfollow)="connectionAction($event, idx_i*groupCount+idx_j)"
+            [processing]="processing[idx_i*groupCount+idx_j]"></connection-card>
+        </div>
     </div>
 </div>
+<ng-template #loadingSection>
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+</ng-template>
