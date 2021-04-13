@@ -8,9 +8,13 @@ import { FollowerComponent } from './app-components/user/connections/follower/fo
 import { FollowingComponent } from './app-components/user/connections/following/following.component';
 import { NewConnectionsComponent } from './app-components/user/connections/new-connections/new-connections.component';
 import { FeedsComponent } from './app-components/user/feeds/feeds.component';
+import { AccomplishmentsComponent } from './app-components/user/profile/accomplishments/accomplishments.component';
+import { BasicDetailsComponent } from './app-components/user/profile/basic-details/basic-details.component';
 import { ProfileComponent } from './app-components/user/profile/profile.component';
+import { SettingsComponent } from './app-components/user/profile/settings/settings.component';
 import { UserComponent } from './app-components/user/user.component';
 import { AuthGaurd } from './_helpers/auth.gaurd';
+import { Accomplishment } from './_model/accomplishment';
 
 
 const routes: Routes = [
@@ -27,7 +31,12 @@ const routes: Routes = [
       {path : 'newconnections', component:NewConnectionsComponent},
 
     ]},
-    {path : 'profile', component:ProfileComponent},
+    {path : 'profile', component:ProfileComponent, children :[
+      {path:'', pathMatch:"full", redirectTo:'basicdetails'},
+      {path:'basicdetails', component:BasicDetailsComponent},
+      {path:'accomplishments', component : AccomplishmentsComponent},
+      {path:'settings', component : SettingsComponent},
+    ]},
   ]},  
   { path: '**', redirectTo: '' }
   

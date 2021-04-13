@@ -20,6 +20,9 @@ import { FollowingComponent } from './app-components/user/connections/following/
 import { FollowerComponent } from './app-components/user/connections/follower/follower.component';
 import { NewConnectionsComponent } from './app-components/user/connections/new-connections/new-connections.component';
 import { ConnectionCardComponent } from './_components/connection-card/connection-card.component';
+import { BasicDetailsComponent } from './app-components/user/profile/basic-details/basic-details.component';
+import { AccomplishmentsComponent } from './app-components/user/profile/accomplishments/accomplishments.component';
+import { SettingsComponent } from './app-components/user/profile/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { ConnectionCardComponent } from './_components/connection-card/connectio
     FollowingComponent,
     FollowerComponent,
     NewConnectionsComponent,
-    ConnectionCardComponent    
+    ConnectionCardComponent,
+    BasicDetailsComponent,
+    AccomplishmentsComponent,
+    SettingsComponent    
   ],
   imports: [
     BrowserModule,
