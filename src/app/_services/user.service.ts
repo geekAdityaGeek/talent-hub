@@ -48,4 +48,13 @@ export class UserService {
   public follow(userId : string) : Promise<any>{
     return this.http.post<any>(ApiPaths.getApiPath("follow", userId), null).toPromise()
   }
+
+  public searchFolloweeConnections(){
+    return this.http.get<any>(ApiPaths.getApiPath("getFollowees",undefined)).toPromise()
+  }
+
+  public searchFollowerConnections(){
+    return this.http.get<any>(ApiPaths.getApiPath("getFollowers",undefined)).toPromise()
+  }
+
 }

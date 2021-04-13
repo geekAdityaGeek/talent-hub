@@ -12,7 +12,9 @@ export class ApiPaths{
         searchConnections : "search/#",
         getFile : "files/#",
         follow : "follow/#",
-        unfollow : "unfollow/#"
+        unfollow : "unfollow/#",
+        getFollowees : "followees",
+        getFollowers : "follower"
     } 
     
 

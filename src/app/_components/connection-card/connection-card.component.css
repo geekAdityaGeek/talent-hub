@@ -1,6 +1,9 @@
 .card{
-    height : 150px;
+    height : 180px;
     margin-top: 10px;
+}
+.card-body{
+    height : 150px
 }
 
 .card-footer{
@@ -34,4 +37,6 @@ img{
 
 h6{
     font-weight: bold;
+    margin-bottom: 0px;
+    margin-top : 5px
 }

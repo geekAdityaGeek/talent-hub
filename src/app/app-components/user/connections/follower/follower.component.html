@@ -1,1 +1,7 @@
-<p>follower works!</p>
+<div class="row" *ngFor="let idx_i of counter(searchGroupContentCount)">
+    <div class="col-4" *ngFor="let idx_j of counter(groupCount)">
+        <connection-card [connection]="connections[idx_i*groupCount+idx_j]" 
+        (followUnfollow)="connectionAction($event, idx_i*groupCount+idx_j)"
+        [processing]="processing[idx_i*groupCount+idx_j]"></connection-card>
+    </div>
+</div>
