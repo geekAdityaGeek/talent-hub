@@ -64,9 +64,9 @@ export class BasicDetailsComponent implements OnInit {
     //fetching user details
     this.userService.getUserDetails().then(
       response => {
-        console.log(response)
+        //console.log(response)
         this.user = this.userService.formUserFromResponse(response)
-        console.log(this.user)
+        //console.log(this.user)
         this.formBasicDetailsForm()
       }
     ).catch(

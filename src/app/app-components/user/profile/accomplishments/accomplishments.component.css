@@ -1,3 +1,36 @@
 textarea{
     height : 100px
 }
+
+hr.accomplishment-line{
+    margin-top : 0.25rem;
+    margin-bottom : 0.25rem;
+}
+
+.operation-section{
+    float: right;
+}
+svg{
+    margin : 3px
+}
+
+.bi-trash-fill{
+    color : red
+}
+
+.bi-pencil-fill{
+    color : green
+}
+
+.date-section{
+    font-size: small;
+    color: gray;
+}
+
+h6{
+    font-weight: bold;
+}
+
+.accomplishment-description{
+    font-size: small;
+}

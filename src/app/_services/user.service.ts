@@ -38,7 +38,7 @@ export class UserService {
     accomplishment.id = response._id
     accomplishment.title = response.title
     accomplishment.description = response.description
-    accomplishment.accomplishmentDate = response.date
+    accomplishment.date = response.date
     return accomplishment
   }
 
