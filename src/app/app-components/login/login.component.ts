@@ -41,8 +41,7 @@ export class LoginComponent implements OnInit {
     this.loading = true
     let loginPromise : Promise<any> = this.authenticationService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
     loginPromise.then( response => {
-      console.log(response)
-      localStorage.setItem("loggedInUser", response) 
+      localStorage.setItem("loggedInUser", JSON.stringify(response)) 
       this.authenticationService.setLoggedInUser(response)
     }).catch(error => {
       console.log(error)
