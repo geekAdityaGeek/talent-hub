@@ -1,5 +1,5 @@
 <div *ngIf="currentUser; else notLoggedIn">
-<button (click)=logout()> Logout</button>
+    <user (logoutEmitter)="logout()"></user>
 </div>
 <ng-template #notLoggedIn>
     <div class="row">

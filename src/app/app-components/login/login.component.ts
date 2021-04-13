@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
     loginPromise.then( response => {
       localStorage.setItem("loggedInUser", JSON.stringify(response)) 
       this.authenticationService.setLoggedInUser(response)
+      this.router.navigate([this.returnUrl]);
     }).catch(error => {
       console.log(error)
       this.loading = false
