@@ -6,7 +6,9 @@ export class ApiPaths{
         logoutAllSession : 'user/logoutall',
         logout : 'user/logout' ,
         forgetPassword : "user/forgotpassword",
-        registerUser : "user"
+        registerUser : "user",
+        getAllDomains : "alldomains",
+        postByDomainId : "posts/#"
     } 
     
 

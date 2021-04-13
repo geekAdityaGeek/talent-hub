@@ -9,7 +9,7 @@ export class AuthGaurd implements CanActivate{
         private authenticationService : AuthenticationService){}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        debugger
+        
         //indicating user is logged in 
         if(this.authenticationService.getLoggedInUser()){
             return true
