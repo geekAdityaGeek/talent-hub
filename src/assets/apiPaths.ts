@@ -8,7 +8,11 @@ export class ApiPaths{
         forgetPassword : "user/forgotpassword",
         registerUser : "user",
         getAllDomains : "alldomains",
-        postByDomainId : "posts/#"
+        postByDomainId : "posts/#",
+        searchConnections : "search/#",
+        getFile : "files/#",
+        follow : "follow/#",
+        unfollow : "unfollow/#"
     } 
     
 

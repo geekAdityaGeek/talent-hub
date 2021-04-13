@@ -19,6 +19,7 @@ import { PostCardComponent } from './_components/post-card/post-card.component';
 import { FollowingComponent } from './app-components/user/connections/following/following.component';
 import { FollowerComponent } from './app-components/user/connections/follower/follower.component';
 import { NewConnectionsComponent } from './app-components/user/connections/new-connections/new-connections.component';
+import { ConnectionCardComponent } from './_components/connection-card/connection-card.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NewConnectionsComponent } from './app-components/user/connections/new-c
     PostCardComponent,
     FollowingComponent,
     FollowerComponent,
-    NewConnectionsComponent    
+    NewConnectionsComponent,
+    ConnectionCardComponent    
   ],
   imports: [
     BrowserModule,

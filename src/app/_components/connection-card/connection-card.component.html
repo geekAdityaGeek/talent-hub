@@ -1,0 +1,18 @@
+<div class="card" *ngIf="connection">
+    <div class="card-body">
+            <div>
+                <img [src]="getSource()" alt="Profile Pic">
+            </div>
+            <div class="connection-details">
+                <h6>{{connection.name}}</h6>
+                <span class="desc">{{connection.email}}</span>
+            </div>
+        
+    </div>
+    <div class="card-footer btn"  (click)="emitAction()">
+        <span *ngIf="!connection.following">+ Follow</span>
+        <span *ngIf="connection.following">- Unfollow</span>
+        <span *ngIf="processing" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    </div>
+
+</div>

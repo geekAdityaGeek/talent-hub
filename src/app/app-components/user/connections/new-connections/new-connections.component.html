@@ -1,1 +1,20 @@
-<p>new-connections works!</p>
+<form [formGroup]="searchForm" (ngSubmit)="searchConnections()">
+    <div class="input-group">
+        <input class="form-control" type="text" formControlName="search"
+        placeholder="Search by name or email id of connection" 
+        aria-label="" aria-describedby="searchConnection">
+        <div class="input-group-append">
+            <button class="btn btn-primary input-group-text" id="searchConnection"
+            type="submit" [disabled]="loading">Search
+            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</form>
+<div class="row" *ngFor="let idx_i of counter(searchGroupContentCount)">
+    <div class="col-4" *ngFor="let idx_j of counter(groupCount)">
+        <connection-card [connection]="connections[idx_i*groupCount+idx_j]" 
+        (followUnfollow)="connectionAction($event, idx_i*groupCount+idx_j)"
+        [processing]="processing[idx_i*groupCount+idx_j]"></connection-card>
+    </div>
+</div>
