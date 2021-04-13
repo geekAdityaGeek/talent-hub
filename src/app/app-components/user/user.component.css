@@ -1,3 +1,7 @@
 .navbar{
     height: 52px;
 }
+
+a{
+    font-weight: smaller;
+}

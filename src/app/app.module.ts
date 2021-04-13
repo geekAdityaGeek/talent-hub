@@ -12,6 +12,9 @@ import { ForgetPasswordComponent } from './app-components/forget-password/forget
 import { UserComponent } from './app-components/user/user.component';
 import { jwtInterceptor } from './_helpers/jwt.interceptor';
 import { AlertComponent } from './_components/alert/alert.component';
+import { FeedsComponent } from './app-components/user/feeds/feeds.component';
+import { ConnectionsComponent } from './app-components/user/connections/connections.component';
+import { ProfileComponent } from './app-components/user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { AlertComponent } from './_components/alert/alert.component';
     RegisterUserComponent,
     ForgetPasswordComponent,
     UserComponent,
-    AlertComponent    
+    AlertComponent,
+    FeedsComponent,
+    ConnectionsComponent,
+    ProfileComponent    
   ],
   imports: [
     BrowserModule,
