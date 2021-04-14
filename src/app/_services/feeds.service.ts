@@ -69,5 +69,9 @@ export class FeedsService {
 
   public getComments(postId : string) : Promise<any>{
     return this.http.get<any>(ApiPaths.getApiPath('getComments', postId)).toPromise()
+  } 
+
+  public postComment(comment : string, postId : string) : Promise<any>{
+    return this.http.post<any>(ApiPaths.getApiPath('postComment', undefined), {comment:comment, post_id : postId}).toPromise()
   }
 }

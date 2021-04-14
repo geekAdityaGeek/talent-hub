@@ -25,7 +25,8 @@ export class PostDetailService {
         }
 
         let modalConfig = new MatDialogConfig()
-        modalConfig.width = '80%'
+        modalConfig.width = '90%'
+        modalConfig.height = '80%'
         modalConfig.data = {post : post, comments : comments}
         this.modal.open(PostDetailComponent,modalConfig)
       }
@@ -33,4 +34,6 @@ export class PostDetailService {
       error => {console.log(error)}
     ).finally( )
   }
+
+
 }
