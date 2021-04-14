@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Like } from 'src/app/_model/like';
 import { Post } from 'src/app/_model/post';
+import { AlertService } from 'src/app/_services/alert.service';
 import { FeedsService } from 'src/app/_services/feeds.service';
 import { ApiPaths } from 'src/assets/apiPaths';
 
@@ -14,7 +15,8 @@ export class PostCardComponent implements OnInit {
   @Input() post : Post
   likeLoading : boolean = false
 
-  constructor(private feedsService : FeedsService) { }
+  constructor(private feedsService : FeedsService,
+    private alertService : AlertService) { }
 
   ngOnInit() {
   }
@@ -60,12 +62,8 @@ export class PostCardComponent implements OnInit {
     )
   }
 
-  movePrevious(){
-    
-  }
-
-  moveNext(){
-
+  viewDetails(){debugger
+    this.alertService.generateAlert("hello world")
   }
 
 }

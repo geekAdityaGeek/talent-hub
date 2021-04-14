@@ -27,6 +27,9 @@ import { DatePipe } from '@angular/common';
 import { UploadsComponent } from './app-components/user/uploads/uploads.component';
 import { NewUploadsComponent } from './app-components/user/uploads/new-uploads/new-uploads.component';
 import { PreviousUploadsComponent } from './app-components/user/uploads/previous-uploads/previous-uploads.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -57,9 +60,12 @@ import { PreviousUploadsComponent } from './app-components/user/uploads/previous
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: jwtInterceptor, multi: true },DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AlertComponent]
 })
 export class AppModule { }
