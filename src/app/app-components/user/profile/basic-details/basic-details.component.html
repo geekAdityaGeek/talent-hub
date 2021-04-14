@@ -1,14 +1,16 @@
+
+<div *ngIf="!formLoading; else loadingTemplate">
 <form [formGroup]="basicDetailsForm">
 
-    <label class="hoverable" for="fileInput">
-        <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
-        <div class="hover-text">Choose file</div>
-        <div class="background"></div>
-      </label>
-      <br/>
-      <input id="fileInput" type='file' (change)="onSelectFile($event)">
-      <button *ngIf="url" (click)="delete()" >delete</button>
-
+    <div *ngIf="!uploading; else loadingTemplate">
+        <label class="hoverable" for="fileInput">
+            <img [src]="getSource() "> 
+            <div class="hover-text">Choose file</div>
+            <div class="background"></div>
+        </label>
+        <br/>
+        <input id="fileInput" type='file' (change)="onSelectFile($event)">
+    </div>
     <h5>Basic Information</h5>
     <hr/>
     <div class="row">
@@ -154,3 +156,10 @@
 
 
 </form>
+</div>
+
+<ng-template #loadingTemplate>
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+</ng-template>

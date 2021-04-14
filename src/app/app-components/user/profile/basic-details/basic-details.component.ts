@@ -6,6 +6,7 @@ import { Domain } from 'src/app/_model/domain';
 import { User } from 'src/app/_model/user';
 import { FeedsService } from 'src/app/_services/feeds.service';
 import { UserService } from 'src/app/_services/user.service';
+import { ApiPaths } from 'src/assets/apiPaths';
 
 @Component({
   selector: 'app-basic-details',
@@ -14,12 +15,15 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class BasicDetailsComponent implements OnInit {
 
+  formLoading = false
+  uploading = false
   user : User = new User()
   basicDetailsForm : FormGroup
   domains : Array<Domain> = new Array<Domain>()
   nonEditableFeilds = {}
   editableFeilds = {}
   userDomainInterests : Array<Domain> = new Array<Domain>()
+  profilePic : File
   
   constructor(private userService : UserService,
     private feedsService : FeedsService,
@@ -39,7 +43,7 @@ export class BasicDetailsComponent implements OnInit {
       'addressLine1' : new FormControl(this.user.addressLine1, []),
       'state' : new FormControl(this.user.state, []),
       'country' : new FormControl(this.user.country, []),
-      'interest' : new FormControl(null, [Validators.required])
+      'interest' : new FormControl(null, [Validators.required]),
     })
     this.nonEditableFeilds['email'] = this.user.email
     this.nonEditableFeilds['dob'] = this. datepipe. transform( this.user.dob, 'yyyy-MM-dd')
@@ -49,6 +53,7 @@ export class BasicDetailsComponent implements OnInit {
 
     this.formBasicDetailsForm()
 
+    this.formLoading = true 
     //fetching all domains
     this.feedsService.getAllDomains().then(
       response => {
@@ -59,8 +64,9 @@ export class BasicDetailsComponent implements OnInit {
       }
     ).catch(
       error => { console.log(error) }
-    )
+    ).finally(() => {this.formLoading = false})
 
+    this.formLoading = true
     //fetching user details
     this.userService.getUserDetails().then(
       response => {
@@ -71,8 +77,11 @@ export class BasicDetailsComponent implements OnInit {
       }
     ).catch(
       error => {console.log(error)}
+    ).finally(
+      ()=>{ this.formLoading = false}
     )
 
+    this.formLoading = true
     //fetching user interest
     this.userService.getUserInterests().then(
       response => {debugger
@@ -85,6 +94,8 @@ export class BasicDetailsComponent implements OnInit {
       error => {
         console.log(error)
       }
+    ).finally(
+      () => { this.formLoading = false}
     )
   }
 
@@ -131,6 +142,48 @@ export class BasicDetailsComponent implements OnInit {
     )
   }
 
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      this.profilePic = event.target.files[0]
+      this.uploadProfilePic()
+    }
+  }
+
+  uploadProfilePic(){
+
+    if(this.profilePic){
+      this.uploading = true
+      let fileData : FormData = new FormData()
+      fileData.append('file', this.profilePic)
+      this.userService.fileUpload(fileData).then(
+        response => {    
+          console.log(response) 
+          let profilepicFilename =   response.file.filename
+          this.userService.updateUser({profilePicUrl : response.file.filename})
+          .then(
+            response => { 
+              this.user.profilePicUrl = profilepicFilename
+              console.log(response)}
+          ).catch(
+            error => console.log(error)
+          )   
+        }
+      ).catch(
+        error => { console.log(error) }
+      ).finally(
+        () => {this.uploading = false}
+      )
+    }
+  }
+
+  getSource(){
+    console.log("prifile pic : ")
+    if(this.user.profilePicUrl){
+      console.log(ApiPaths.getApiPath("getFile", this.user.profilePicUrl))
+      return ApiPaths.getApiPath("getFile", this.user.profilePicUrl)
+    }
+    return '../../../../assets/images/default_profile_pic.png'
+  }
   
 
 }

@@ -12,6 +12,7 @@ export class RegisterUserComponent implements OnInit {
   registerForm :FormGroup
   loading : boolean = false
   confirmPassword : string
+  profilePic : File
 
   constructor(private userService : UserService) { }
 
@@ -21,7 +22,8 @@ export class RegisterUserComponent implements OnInit {
       'email' : new FormControl(null, [Validators.required, Validators.email]),
       'dob' : new FormControl(null, [Validators.required]),
       'pass' : new FormControl(null, [Validators.required]),
-      'confirmPassword' : new FormControl(null, [Validators.required])      
+      'confirmPassword' : new FormControl(null, [Validators.required]) ,
+      'profilePicUrl' : new FormControl(null, [])     
     })
   }
 
@@ -31,14 +33,40 @@ export class RegisterUserComponent implements OnInit {
       return false
 
     this.loading = true
-    let registrationPromise : Promise<any> = this.userService.registerUser(this.registerForm)
-    registrationPromise.then(response => {
-      console.log(response)
-      this.registerForm.reset()
-    })
-    .catch(error => { console.log(error)} )
-    .finally(()=>{ this.loading = false})
 
+    let formData : FormData = new FormData()
+    formData.append('file', this.profilePic)
+    this.userService.profilePicUpload(formData).then(
+      response => {
+        this.registerForm.get('profilePicUrl').setValue(response.file.filename)
+        let registrationPromise : Promise<any> = this.userService.registerUser(this.registerForm)
+        registrationPromise.then(response => {
+            console.log(response)
+            this.registerForm.reset()
+            for(let idx in this.registerForm.controls){
+              this.registerForm.controls[idx].setErrors(null)
+            }
+         })
+        .catch(error => { console.log(error)} )
+        
+      }
+    ).catch(
+      error => { console.log() }
+    ).finally(
+      ()=>{this.loading = false}
+    )
+
+    
+  }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      this.profilePic = event.target.files[0]
+    }
+  }
+
+  getSource(){
+    return '../../assets/images/default_profile_pic.png'
   }
 
 

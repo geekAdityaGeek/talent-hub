@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ApiPaths } from 'src/assets/apiPaths';
+import { Comment } from '../_model/Comment';
 import { Domain } from '../_model/domain';
 import { Like } from '../_model/like';
 import { Post } from '../_model/post';
@@ -39,6 +40,20 @@ export class FeedsService {
     return post
   }
 
+  public getCommentFromResponse(response) : Comment{
+    let comment : Comment = new Comment()
+    comment.id = response.id;
+    comment.comment = response.comment;
+    comment.createdAt = new Date(response.createdAt)
+    comment.likes = response.likes
+    comment.owner = response.owner
+    comment.owner_name = response.owner_name
+    comment.owner_pic = response.owner_pic
+    comment.post_id = response.post_id
+    comment.user_like = response.user_Like
+    return comment
+  }
+
   public getAllDomains() : Promise<any>{
     return this.http.get<any>(ApiPaths.getApiPath("getAllDomains", undefined)).toPromise()
   }
@@ -50,5 +65,9 @@ export class FeedsService {
 
   public increaseLikes(data : Like) : Promise<any> {
     return this.http.post<any>(ApiPaths.getApiPath("increaseLike", undefined), data).toPromise()
+  }
+
+  public getComments(postId : string) : Promise<any>{
+    return this.http.get<any>(ApiPaths.getApiPath('getComments', postId)).toPromise()
   }
 }

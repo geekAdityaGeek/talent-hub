@@ -29,6 +29,7 @@ import { NewUploadsComponent } from './app-components/user/uploads/new-uploads/n
 import { PreviousUploadsComponent } from './app-components/user/uploads/previous-uploads/previous-uploads.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { PostDetailComponent } from './_components/post-detail/post-detail.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     SettingsComponent,
     UploadsComponent,
     NewUploadsComponent,
-    PreviousUploadsComponent    
+    PreviousUploadsComponent,
+    PostDetailComponent    
   ],
   imports: [
     BrowserModule,
@@ -66,6 +68,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: jwtInterceptor, multi: true },DatePipe],
   bootstrap: [AppComponent],
-  entryComponents: [AlertComponent]
+  entryComponents: [AlertComponent, PostDetailComponent]
 })
 export class AppModule { }

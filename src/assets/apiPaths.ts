@@ -20,7 +20,9 @@ export class ApiPaths{
         getUserInterests : "user/domains" ,
         fileUpload : "upload",
         uploadPost : "post",
-        increaseLike : "like"
+        increaseLike : "like",
+        getComments : "comments/#",
+        profilePicUpload : 'profilepicupload'
     } 
     
 

@@ -5,6 +5,14 @@
     </div>
     <hr>
     <div class="container-body">
+        <label class="hoverable" for="fileInput">
+            <img [src]="getSource() "> 
+            <div class="hover-text">Choose file</div>
+            <div class="background"></div>
+        </label>
+        <br/>
+        <input id="fileInput" type='file' (change)="onSelectFile($event)">
+
         <form [formGroup]="registerForm" (ngSubmit)="register()">
 
             <div class="input-group input-group-sm mb-3">
@@ -47,7 +55,7 @@
                 placeholder="" aria-label="Recipient's " aria-describedby="confPass-label">                
             </div>
 
-            <button [disabled]="loading" class="btn btn-primary" type="submit" >
+            <button [disabled]="loading || !registerForm.valid" class="btn btn-primary" type="submit" >
                 Register
                 <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             </button>        

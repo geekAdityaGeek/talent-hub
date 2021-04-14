@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Form, FormGroup } from '@angular/forms';
 import { ApiPaths } from 'src/assets/apiPaths';
 import { AccomplishmentsComponent } from '../app-components/user/profile/accomplishments/accomplishments.component';
 import { Accomplishment } from '../_model/accomplishment';
@@ -106,5 +106,9 @@ export class UserService {
 
   public uploadPost(data : UploadPost) : Promise<any>{
     return this.http.post<any>(ApiPaths.getApiPath("uploadPost", undefined), data).toPromise()
+  }
+
+  public profilePicUpload(formData : FormData) : Promise<any>{
+    return this.http.post<any>(ApiPaths.getApiPath("profilePicUpload",undefined), formData).toPromise()
   }
 }
