@@ -74,4 +74,16 @@ export class FeedsService {
   public postComment(comment : string, postId : string) : Promise<any>{
     return this.http.post<any>(ApiPaths.getApiPath('postComment', undefined), {comment:comment, post_id : postId}).toPromise()
   }
+
+  public getAllUserPosts() : Promise<any>{
+    return this.http.get<any>(ApiPaths.getApiPath('getAllUserPosts', undefined)).toPromise()
+  }
+
+  public updatePostByPostId(postId : string, data : any) :Promise<any>{debugger
+    return this.http.patch<any>(ApiPaths.getApiPath("upadatePostByPostId", postId), data).toPromise()
+  }
+
+  public deletePostsByPostId(postId :string) : Promise<any>{
+    return this.http.delete<any>(ApiPaths.getApiPath("deletePostByPostId", postId)).toPromise()
+  }
 }

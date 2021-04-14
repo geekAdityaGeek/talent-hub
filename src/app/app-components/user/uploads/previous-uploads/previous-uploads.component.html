@@ -1,1 +1,68 @@
-<p>previous-uploads works!</p>
+
+<div *ngIf="!postsLoading; else loadingBlock"> 
+<div class="card-title">
+    <button class="btn btn-primary previous" (click)="movePrevious()"> &lt; </button>
+    <button class="btn btn-primary next" (click)="moveNext()"> &gt; </button>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="card" *ngIf="posts[currentIndex]">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-10">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="portfolioCheck" *ngIf="!postsProcessing[currentIndex]; else processingBlock "
+                            [checked]="posts[currentIndex].portfolio" (click)="changePortfolioStatus(currentIndex)">
+                            <label class="form-check-label" for="portfolioCheck">Include in Portfolio</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" (click)="deletePost(currentIndex)" *ngIf="!postsProcessing[currentIndex]; else processingBlock ">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                    </div>
+                </div>
+                <post-card [post]="posts[currentIndex]"></post-card>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-6">
+        <div class="card" *ngIf="posts[currentIndex+1]">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-10">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="portfolioCheck" *ngIf="!postsProcessing[currentIndex+1]; else processingBlock "
+                            [checked]="posts[currentIndex+1].portfolio" (click)="changePortfolioStatus(currentIndex+1)">
+                            <label class="form-check-label" for="portfolioCheck">Include in Portfolio</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" (click)="deletePost(currentIndex+1)" *ngIf="!postsProcessing[currentIndex+1]; else processingBlock ">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                    </div>
+                </div>
+                <post-card [post]="posts[currentIndex+1]"></post-card>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<ng-template #loadingBlock>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #processingBlock>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    <span class="sr-only">Loading...</span>
+</ng-template>
+
+

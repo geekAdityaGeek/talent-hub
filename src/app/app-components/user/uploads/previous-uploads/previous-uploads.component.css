@@ -1,0 +1,28 @@
+
+a.nav-link{
+    font-size: small;
+    font-weight: bold;
+    padding-left : 0px;
+    
+}
+
+li.nav-item:hover{
+    border-bottom: 1px solid lightblue;
+    cursor: pointer;
+}
+
+.btn{
+    border-radius: 50%;
+}
+
+.btn.next{
+    float: right;
+}
+
+.bi-trash-fill{
+    color : red
+}
+
+.form-check-label{
+    font-size: small;
+}

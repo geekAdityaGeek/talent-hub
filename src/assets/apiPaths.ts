@@ -23,8 +23,11 @@ export class ApiPaths{
         increaseLike : "like",
         getComments : "comments/#",
         profilePicUpload : 'profilepicupload',
-        postComment : 'comment'
-    } 
+        postComment : 'comment',
+        getAllUserPosts : "user/posts",
+        upadatePostByPostId : "post/#",
+        deletePostByPostId : "post/#"
+     } 
     
 
     constructor(){}

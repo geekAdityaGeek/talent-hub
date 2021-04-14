@@ -54,6 +54,7 @@ export class UserService {
     user.country = response.country
     user.mobileNumber = response.mobileNumber
     user.domain_ids = response.domain_ids
+    user.profilePicUrl = response.profilePicUrl
     user.accomplishments = new Array<Accomplishment>()
     for(let idx in response.accomplishments ){
       user.accomplishments.push(this.formAccomplishmentFromResponse(response.accomplishments))
