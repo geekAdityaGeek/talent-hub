@@ -5,6 +5,7 @@ import { ApiPaths } from 'src/assets/apiPaths';
 import { AccomplishmentsComponent } from '../app-components/user/profile/accomplishments/accomplishments.component';
 import { Accomplishment } from '../_model/accomplishment';
 import { Connection } from '../_model/connection';
+import { UploadPost } from '../_model/uploadPost';
 import { User } from '../_model/user';
 
 @Injectable({
@@ -97,6 +98,13 @@ export class UserService {
 
   public getUserInterests() : Promise<any>{
     return this.http.get<any>(ApiPaths.getApiPath("getUserInterests", undefined)).toPromise()
+  }
 
+  public fileUpload(formData : FormData) : Promise<any>{
+    return this.http.post<any>(ApiPaths.getApiPath("fileUpload", undefined), formData).toPromise()
+  }
+
+  public uploadPost(data : UploadPost) : Promise<any>{
+    return this.http.post<any>(ApiPaths.getApiPath("uploadPost", undefined), data).toPromise()
   }
 }

@@ -17,7 +17,9 @@ export class ApiPaths{
         getFollowers : "follower",
         updateUser : "user/me",
         getUserDetails : "user/me",
-        getUserInterests : "user/domains" 
+        getUserInterests : "user/domains" ,
+        fileUpload : "upload",
+        uploadPost : "post"
     } 
     
 

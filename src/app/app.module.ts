@@ -25,6 +25,8 @@ import { AccomplishmentsComponent } from './app-components/user/profile/accompli
 import { SettingsComponent } from './app-components/user/profile/settings/settings.component';
 import { DatePipe } from '@angular/common';
 import { UploadsComponent } from './app-components/user/uploads/uploads.component';
+import { NewUploadsComponent } from './app-components/user/uploads/new-uploads/new-uploads.component';
+import { PreviousUploadsComponent } from './app-components/user/uploads/previous-uploads/previous-uploads.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { UploadsComponent } from './app-components/user/uploads/uploads.componen
     BasicDetailsComponent,
     AccomplishmentsComponent,
     SettingsComponent,
-    UploadsComponent    
+    UploadsComponent,
+    NewUploadsComponent,
+    PreviousUploadsComponent    
   ],
   imports: [
     BrowserModule,

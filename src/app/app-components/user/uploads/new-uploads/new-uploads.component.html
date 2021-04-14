@@ -1,0 +1,63 @@
+<div *ngIf="!loading; else loadingTemplate">
+    <form [formGroup]="newUploadForm">
+
+        <div class="form-check form-switch mb-3">
+            <input class="form-check-input" type="checkbox" id="includeInProtfolio" 
+            formControlElement='portfolioInclude'/>
+            <label class="form-check-label" for="includeInProtfolio">
+                Include In Portfolio</label>
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="title">Title</span>
+            </div>
+            <input class="form-control" type="text" formControlName="title"
+            placeholder="" aria-label="" aria-describedby="title">
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="description">Description</span>
+            </div>
+            <textarea class="form-control" type="text" formControlName="description"
+            placeholder="" aria-label="" aria-describedby="description"></textarea>
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="interest">Interests</span>
+            </div>
+            <select class="form-control" type="file" formControlName='interest'
+            placeholder="" aria-label="" aria-describedby="interest">
+                <option *ngFor="let domain of domains; let idx=index" 
+                value="{{domain.id}}">{{domain.name}}</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-primary" id="interest-btn" (click)="addInterest()">Add</button>
+            </div>
+        </div>
+        <span class="btn btn-primary badge-btn btn-sm" *ngFor="let domainInterest of userDomainInterests; let idx = index">
+            {{domainInterest.name}} <span class= "badge badge-light" (click)="delete(idx)">X</span>
+        </span>
+
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="fileUpload">File Upload</span>
+            </div>
+            <input class="form-control" type="file" formControlName="fileUpload"
+            placeholder="" aria-label="" aria-describedby="fileUpload" (change)="onSelectFile($event)">
+        </div>
+
+        <button [disabled]="uploading || !newUploadForm.valid" class="btn btn-primary btn-sm" type="submit" (click)="uploadPost()">
+            Upload Post
+            <span *ngIf="uploading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+
+    </form>
+</div>
+<ng-template #loadingTemplate>
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+</ng-template>

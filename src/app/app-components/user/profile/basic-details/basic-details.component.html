@@ -143,7 +143,7 @@
                     </button>  
                 </div> 
             </div>
-            <span class="btn btn-primary badge-btn" *ngFor="let domainInterest of userDomainInterests; let idx = index">
+            <span class="btn btn-primary badge-btn btn-sm" *ngFor="let domainInterest of userDomainInterests; let idx = index">
                 {{domainInterest.name}} <span class= "badge badge-light" (click)="delete(idx)">X</span>
             </span>
         </div>
