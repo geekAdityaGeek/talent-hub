@@ -24,6 +24,7 @@ import { BasicDetailsComponent } from './app-components/user/profile/basic-detai
 import { AccomplishmentsComponent } from './app-components/user/profile/accomplishments/accomplishments.component';
 import { SettingsComponent } from './app-components/user/profile/settings/settings.component';
 import { DatePipe } from '@angular/common';
+import { UploadsComponent } from './app-components/user/uploads/uploads.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { DatePipe } from '@angular/common';
     ConnectionCardComponent,
     BasicDetailsComponent,
     AccomplishmentsComponent,
-    SettingsComponent    
+    SettingsComponent,
+    UploadsComponent    
   ],
   imports: [
     BrowserModule,

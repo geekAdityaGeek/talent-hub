@@ -12,6 +12,7 @@ import { AccomplishmentsComponent } from './app-components/user/profile/accompli
 import { BasicDetailsComponent } from './app-components/user/profile/basic-details/basic-details.component';
 import { ProfileComponent } from './app-components/user/profile/profile.component';
 import { SettingsComponent } from './app-components/user/profile/settings/settings.component';
+import { UploadsComponent } from './app-components/user/uploads/uploads.component';
 import { UserComponent } from './app-components/user/user.component';
 import { AuthGaurd } from './_helpers/auth.gaurd';
 import { Accomplishment } from './_model/accomplishment';
@@ -37,6 +38,7 @@ const routes: Routes = [
       {path:'accomplishments', component : AccomplishmentsComponent},
       {path:'settings', component : SettingsComponent},
     ]},
+    {path : 'uploads', component : UploadsComponent}
   ]},  
   { path: '**', redirectTo: '' }
   
