@@ -19,8 +19,8 @@
         <div class="card">
             <div class="card-body" *ngIf="!postsLoading; else loadingBlock">
                 <div class="card-title">
-                    <button class="btn btn-primary previous"> &lt; </button>
-                    <button class="btn btn-primary next"> &gt; </button>
+                    <button class="btn btn-primary previous" (click)="movePrevious()"> &lt; </button>
+                    <button class="btn btn-primary next" (click)="moveNext()"> &gt; </button>
                 </div>
                 <div class="row">
                     <div class="col-6">

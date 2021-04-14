@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { ApiPaths } from 'src/assets/apiPaths';
 import { Domain } from '../_model/domain';
+import { Like } from '../_model/like';
 import { Post } from '../_model/post';
 
 @Injectable({
@@ -33,7 +34,8 @@ export class FeedsService {
     post.parentPost = postResponse.parentPost
     post.owner = postResponse.owner
     post.createdAt = postResponse.createdAt
-    post.profilePicUrl = post.profilePicUrl
+    post.profilePicUrl = postResponse.profilePicUrl
+    post.contentType = postResponse.contentType
     return post
   }
 
@@ -44,5 +46,9 @@ export class FeedsService {
   getPostsByDomainId(domain) : Promise<any>{
     return this.http.get<any>(ApiPaths.getApiPath("postByDomainId", domain.id)).toPromise()
 
+  }
+
+  public increaseLikes(data : Like) : Promise<any> {
+    return this.http.post<any>(ApiPaths.getApiPath("increaseLike", undefined), data).toPromise()
   }
 }

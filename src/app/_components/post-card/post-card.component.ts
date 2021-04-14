@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Like } from 'src/app/_model/like';
 import { Post } from 'src/app/_model/post';
+import { FeedsService } from 'src/app/_services/feeds.service';
+import { ApiPaths } from 'src/assets/apiPaths';
 
 @Component({
   selector: 'post-card',
@@ -9,10 +12,60 @@ import { Post } from 'src/app/_model/post';
 export class PostCardComponent implements OnInit {
 
   @Input() post : Post
-  constructor() { }
+  likeLoading : boolean = false
+
+  constructor(private feedsService : FeedsService) { }
 
   ngOnInit() {
+  }
+
+  getProfilePicSource(){
+    if(this.post.profilePicUrl){
+      return ApiPaths.getApiPath("getFile",this.post.profilePicUrl)
+    }
+    return '../../../assets/images/default_profile_pic.png'
+  }
+
+  getContentType() : string{
+    if(this.post.contentType){
+      return this.post.contentType.split("/")[0]
+    }
+    return null
+  }
+
+  getContentSource() : string {
+    if(this.post.filenames.length > 0 && this.post.filenames[0]){
+      return ApiPaths.getApiPath("getFile",this.post.filenames[0])
+    }
+    return null
+  }
+
+  increaseLikes(){
+    this.likeLoading = true
+    let data : Like = new Like()
+    data.parent_id = this.post.id
+    data.parent_type = "Post"
+    this.feedsService.increaseLikes(data).then(
+      (response) => {
+        console.log(response)
+        this.post.likes = response.likes
+        this.post.userLike = response.userLike
+      }
+    ).catch(
+      (error) => {
+        console.log(error)
+      }
+    ).finally(
+      () => {this.likeLoading = false}
+    )
+  }
+
+  movePrevious(){
     
+  }
+
+  moveNext(){
+
   }
 
 }

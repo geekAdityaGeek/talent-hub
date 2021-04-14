@@ -18,7 +18,9 @@ export class FeedsComponent implements OnInit {
   posts : Array<Post> = new Array<Post>()
   constructor(private feedsService : FeedsService) { }
 
+
   ngOnInit() {
+    this.currentIndex = 0
     this.domainLoading = true
     this.postsLoading = true
     let domainPromise = this.feedsService.getAllDomains()
@@ -28,16 +30,7 @@ export class FeedsComponent implements OnInit {
           let domain : Domain = this.feedsService.getDomainFromResponse(response[idx])
           this.domains.push(domain)
         }
-        this.feedsService.getPostsByDomainId(this.domains[0])
-        .then( response => {
-          this.postsLoading = false
-          for(let idx in response){
-            let post : Post = this.feedsService.convertToPost(response[idx])
-            this.posts.push(post)
-          }
-          console.log(this.posts)
-        }).catch( error => { console.log(error)} )
-        .finally(()=>{ this.postsLoading = false })
+        this.loadPosts(0)        
       }
     ).catch(
       error => {
@@ -48,7 +41,31 @@ export class FeedsComponent implements OnInit {
     )
   }
 
+  loadPosts(idx : number){
+    this.postsLoading = true
+    this.posts = new Array<Post>()
+    this.feedsService.getPostsByDomainId(this.domains[idx])
+        .then( response => {
+          this.postsLoading = false
+          for(let idx in response){
+            let post : Post = this.feedsService.convertToPost(response[idx])
+            this.posts.push(post)
+          }
+          console.log(this.posts)
+        }).catch( error => { console.log(error)} )
+        .finally(()=>{ this.postsLoading = false })
+  }
 
+  movePrevious(){
+    if(this.currentIndex == 0)  return 
+    this.currentIndex = this.currentIndex - 1
+  }
+
+  moveNext(){
+    if(this.currentIndex == this.posts.length-2 || this.currentIndex == this.posts.length-1 )
+      return
+    this.currentIndex = this.currentIndex + 1
+  }
 
 
 }

@@ -11,4 +11,5 @@ export class Post {
     owner: string
     createdAt: Date
     profilePicUrl: string
+    contentType : string
 }

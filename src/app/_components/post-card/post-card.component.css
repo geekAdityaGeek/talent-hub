@@ -1,3 +1,46 @@
-.card{
-    height : 70vh
+.profile-pic{
+    height : 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.col-2{
+    padding : 0px
+}
+
+.post-title{
+    font-size: medium;
+    font-weight : bold
+}
+
+.post-description{
+    font-size: small;
+    overflow-y: auto;
+    padding-top: 5px;
+}
+
+.post-content{
+    max-width: 100%;
+}
+
+.bi-eye-fill{
+    color: green;
+}
+
+.bi-hand-thumbs-up-fill{
+    color : blue
+}
+
+.card-footer{
+    height : 30px;
+    padding-top : 2px;
+    padding-bottom : 2px;
+    padding-left : 1rem;
+    padding-right : 1rem;
+    background-color: white;
+    border-top: 1px solid white;
+}
+
+.userNotLiked{
+    opacity : 0.5
 }
