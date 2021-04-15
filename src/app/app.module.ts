@@ -30,6 +30,7 @@ import { PreviousUploadsComponent } from './app-components/user/uploads/previous
 import { MatDialogModule } from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PostDetailComponent } from './_components/post-detail/post-detail.component';
+import { PortfolioModalComponent } from './_components/portfolio-modal/portfolio-modal.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { PostDetailComponent } from './_components/post-detail/post-detail.compo
     UploadsComponent,
     NewUploadsComponent,
     PreviousUploadsComponent,
-    PostDetailComponent    
+    PostDetailComponent,
+    PortfolioModalComponent    
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,6 @@ import { PostDetailComponent } from './_components/post-detail/post-detail.compo
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: jwtInterceptor, multi: true },DatePipe],
   bootstrap: [AppComponent],
-  entryComponents: [AlertComponent, PostDetailComponent]
+  entryComponents: [AlertComponent, PostDetailComponent, PortfolioModalComponent]
 })
 export class AppModule { }

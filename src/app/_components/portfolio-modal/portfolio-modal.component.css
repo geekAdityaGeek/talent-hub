@@ -1,0 +1,87 @@
+.profile-pic{
+    height : 200px;
+    width : 200px;
+    border-radius: 50%;
+    margin : 1rem
+}
+
+.interest-section{
+    margin : 1rem;
+    font-size:small;
+}
+
+.badge{
+    margin : 0.25rem
+}
+
+.stat-section{
+    width: 30vh;
+}
+
+.stat-label, .info-label{
+    font-size: 15px;
+    color: gray;
+}
+
+.stat-value, .info-value{
+    font-size: 15px;
+    float:right
+
+}
+
+.bi-hand-thumbs-up-fill{
+    color: blue;
+}
+
+svg{
+    margin : 0.25rem
+}
+
+.accomplishments-section, .post-showcase-section{
+    margin : 0.5rem
+}
+
+.accomplishment-date-section{
+    font-size: small;
+    color: gray;
+}
+
+.accomplishment-card{
+    margin : 0.25rem
+}
+
+.accomplishment-description{
+    font-size: small;
+}
+
+.accomplishment-title{
+    font-weight: bold;
+    font-size : small
+}
+
+.post-profile-pic{
+    width : 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.post-title{
+    font-size: small;
+    font-weight : bold
+}
+
+.post-card{
+    margin-bottom :0.25rem
+}
+
+.post-card-body{
+    padding:0.5rem
+}
+
+.post-description{
+    font-size: small;
+}
+
+.bi-eye-fill{
+    color: green;
+}

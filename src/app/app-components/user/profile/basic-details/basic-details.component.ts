@@ -84,7 +84,7 @@ export class BasicDetailsComponent implements OnInit {
     this.formLoading = true
     //fetching user interest
     this.userService.getUserInterests().then(
-      response => {debugger
+      response => {
         console.log(response)
         for(let idx in response){
           this.userDomainInterests.push(this.feedsService.getDomainFromResponse(response[idx]))
@@ -112,7 +112,7 @@ export class BasicDetailsComponent implements OnInit {
     )    
   }
 
-  addInterest(){debugger
+  addInterest(){
     let interest : Domain ;
     let interestId = this.basicDetailsForm.get('interest').value
     for(let idx in this.domains){
@@ -130,7 +130,7 @@ export class BasicDetailsComponent implements OnInit {
     this.saveInterest()
   }
 
-  saveInterest(){debugger
+  saveInterest(){
     this.editableFeilds['interest'] = true
     let domain_ids = this.userDomainInterests.map( domain => {return domain.id})
     this.userService.updateUser({'domain_ids' : domain_ids}).then(

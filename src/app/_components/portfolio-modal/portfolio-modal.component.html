@@ -1,0 +1,124 @@
+<mat-dialog-content>
+<div class="row">
+    <div class="col-4 d-flex justify-content-center" style="border-color: 1px solid black;">
+        <div class="profile-pic-section">
+            <img class="profile-pic" [src]="getProfilePictureSrource()" alt="Profile-picture">
+            <div class="connection-section d-flex justify-content-center" *ngIf="!portfolio.isSameUser">
+                <button class="btn btn-primary btn-sm" *ngIf="!portfolio.isFollowing" (click)="follow()"> + Follow </button>
+                <button class="btn btn-primary btn-sm" *ngIf="portfolio.isFollowing" (click)="unfollow()"> - Unfollow </button>
+            </div>
+            <div class="interest-section">
+                <h5>Interests</h5>
+                <hr style="margin:0.25rem">
+                <h6><span class="badge badge-pill badge-primary"
+                    *ngFor="let domain of portfolio.domains">
+                        {{domain.name}}
+                </span></h6>        
+            </div>
+            <div class="card">
+                <div class="card-body stat-section">
+                    <div class="stat-row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
+                            <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
+                        </svg>
+                        <span class="stat-label">Likes : </span> 
+                        <span class="stat-value">{{portfolio.totalLikes}}</span>
+                    </div>
+                    <hr style="margin:0.25rem">
+
+                    <div class="stat-row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                          </svg>
+                        <span class="stat-label">Following : </span> 
+                        <span class="stat-value">{{portfolio.totalFollowing}}</span>
+                    </div>
+                    <hr style="margin:0.25rem">
+
+                    <div class="stat-row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                            <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                          </svg>
+                        <span class="stat-label">Followers : </span> 
+                        <span class="stat-value">{{portfolio.totalFollowers}}</span>
+                    </div>
+                    <hr style="margin:0.25rem">
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    <div class="col-8" style="border-color: 1px solid black;">
+        <div class="basic-info-section">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="info-row">
+                        <span class="info-label">Name : </span>
+                        <span class="info-value">{{portfolio.basicDetails.name}}</span>
+                    </div>
+                    <hr style="margin:0.25rem">
+                    <div class="info-row">
+                        <span class="info-label">State : </span>
+                        <span class="info-value">{{portfolio.basicDetails.state}}</span>
+                    </div>
+                    <hr style="margin:0.25rem">
+                </div>
+                <div class="col-sm-6">
+                    <div class="info-row">
+                        <span class="info-label">Email : </span>
+                        <span class="info-value">{{portfolio.basicDetails.email}}</span>
+                    </div>
+                    <hr style="margin:0.25rem">
+                    <div class="info-row">
+                        <span class="info-label">Country : </span>
+                        <span class="info-value">{{portfolio.basicDetails.country}}</span>
+                    </div>
+                    <hr style="margin:0.25rem">
+                </div>
+
+            </div>
+            
+        </div>
+        <div class="accomplishments-section">
+            <h6>Accomplishments</h6>
+            <hr style="margin:0.25rem">
+            <div class="card accomplishment-card" *ngFor="let accomplishment of portfolio.basicDetails.accomplishments; let idx = index">
+                <div class="card-body">
+                    <div class="accomplishment-title">{{accomplishment.title}}</div>
+                    <hr style="margin:0.25rem">
+                    <div class='row'>
+                        <div class="col-10 accomplishment-date-section">{{accomplishment.date | date:'medium'}}</div>
+                    </div>
+                    <div class="accomplishment-description">{{accomplishment.description}}</div>
+                    
+                </div>
+            </div>
+
+        </div>
+        <div class="post-showcase-section">
+            <h6>Posts</h6>
+            <hr style="margin:0.25rem">
+            <div class="card post-card" *ngFor="let post of portfolio.posts;let idx=index">
+                <div class="card-body post-card-body">
+                    <span class="post-title">{{post.title}}</span>
+                    <div style="float: right;"><img class="post-profile-pic"[src]="getProfilePicSource(idx)" alt="Profile Picture"></div>
+                    <hr style="margin:0.5rem">
+                    <div class="post-description">{{post.description}}</div>
+                    <div style="float:right">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16" (click)="viewDetails(idx)">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                        </svg>    
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+</mat-dialog-content>

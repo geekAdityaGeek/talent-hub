@@ -26,7 +26,8 @@ export class ApiPaths{
         postComment : 'comment',
         getAllUserPosts : "user/posts",
         upadatePostByPostId : "post/#",
-        deletePostByPostId : "post/#"
+        deletePostByPostId : "post/#",
+        getUserPortfolio : "portfolio/#"
      } 
     
 

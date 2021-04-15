@@ -5,6 +5,7 @@ import { ApiPaths } from 'src/assets/apiPaths';
 import { AccomplishmentsComponent } from '../app-components/user/profile/accomplishments/accomplishments.component';
 import { Accomplishment } from '../_model/accomplishment';
 import { Connection } from '../_model/connection';
+import { Portfolio } from '../_model/portfolio';
 import { UploadPost } from '../_model/uploadPost';
 import { User } from '../_model/user';
 
@@ -116,5 +117,9 @@ export class UserService {
 
   public logoutAllSessions() : Promise<any>{
     return this.http.post<any>(ApiPaths.getApiPath("logoutAllSession", undefined), null).toPromise()
+  }
+
+  public getUserPortFolio(userId : string) : Promise<any>{
+    return this.http.get<any>(ApiPaths.getApiPath("getUserPortfolio", userId)).toPromise()
   }
 }
