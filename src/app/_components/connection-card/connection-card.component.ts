@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output , EventEmitter} from '@angular/core';
 import { Connection } from 'src/app/_model/connection';
+import { PortfolioService } from 'src/app/_services/portfolio.service';
 import { ApiPaths } from 'src/assets/apiPaths';
 
 @Component({
@@ -13,7 +14,7 @@ export class ConnectionCardComponent implements OnInit {
   @Input() processing : boolean
   @Output() followUnfollow : EventEmitter<any> = new EventEmitter<any>()
 
-  constructor() { }
+  constructor(private portfolioService : PortfolioService) { }
 
   ngOnInit() {
   }
@@ -21,13 +22,18 @@ export class ConnectionCardComponent implements OnInit {
   getSource(){
     if(this.connection && this.connection.profilePicUrl) {
       return ApiPaths.getApiPath('getFile',this.connection.profilePicUrl)
-    }else{
-      return "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
     }
+    return '../../assets/images/default_profile_pic.png'
+    
   }
 
   emitAction(){
     this.followUnfollow.emit(this.connection);
+  }
+
+  displayPortfolio(){
+    //console.log(this.connection)
+    this.portfolioService.generatePortfolioView(this.connection.id)
   }
 
 

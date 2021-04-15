@@ -1,7 +1,9 @@
 <div class="card" *ngIf="post">
     <div class="card-header">
         <span class="post-title">{{post.title}}</span>
-        <div style="float: right;"><img class="profile-pic"[src]="getProfilePicSource()" alt="Profile Picture"></div>
+        <div style="float: right;">
+            <img class="profile-pic"[src]="getProfilePicSource()" alt="Profile Picture" (click)="displayPortfolio()">
+        </div>
     </div>
     <div class="card-body">
           <img class="post-content" [src]="getContentSource()" *ngIf="getContentType() == 'image'">

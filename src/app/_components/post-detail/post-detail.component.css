@@ -2,6 +2,7 @@
     height : 50px;
     width: 50px;
     border-radius: 50%;
+    cursor : pointer;
 }
 
 .post-title{
@@ -45,6 +46,7 @@ hr{
 .comment-owner-name{
     font-size: small;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .comment{

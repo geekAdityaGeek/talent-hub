@@ -3,6 +3,7 @@ import { Like } from 'src/app/_model/like';
 import { Post } from 'src/app/_model/post';
 import { AlertService } from 'src/app/_services/alert.service';
 import { FeedsService } from 'src/app/_services/feeds.service';
+import { PortfolioService } from 'src/app/_services/portfolio.service';
 import { PostDetailService } from 'src/app/_services/post-detail.service';
 import { ApiPaths } from 'src/assets/apiPaths';
 
@@ -17,7 +18,8 @@ export class PostCardComponent implements OnInit {
   likeLoading : boolean = false
 
   constructor(private feedsService : FeedsService,
-    private postDetailService : PostDetailService) { }
+    private postDetailService : PostDetailService,
+    private portfolioService : PortfolioService) { }
 
   ngOnInit() {
     console.log(this.post)
@@ -66,6 +68,10 @@ export class PostCardComponent implements OnInit {
 
   viewDetails(){
     this.postDetailService.generateDetailView(this.post)
+  }
+
+  displayPortfolio(){
+    this.portfolioService.generatePortfolioView(this.post.owner)
   }
 
 }

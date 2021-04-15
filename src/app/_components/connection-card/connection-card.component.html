@@ -4,7 +4,7 @@
                 <img [src]="getSource()" alt="Profile Pic">
             </div>
             <div class="connection-details">
-                <h6>{{connection.name}}</h6>
+                <span class="connection-name" (click)="displayPortfolio()"><h6>{{connection.name}}</h6></span>
                 <span class="desc">{{connection.email}}</span>
             </div>
         

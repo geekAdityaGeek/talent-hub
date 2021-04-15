@@ -14,7 +14,9 @@
     <div class="col-6">
         <div class="post-header">
             <span class="post-title">{{post.title}}</span>
-            <div style="float: right;"><img class="profile-pic"[src]="getProfilePicSource()" alt="Profile Picture"></div>
+            <div style="float: right;">
+                <img class="profile-pic"[src]="getProfilePicSource()" alt="Profile Picture" (click)="displayPortfolio(post.owner)">
+            </div>
         </div>
         <hr>
         <div class="post-stat">
@@ -28,7 +30,7 @@
         <div class="post-comment">
             <div class="comment-section" *ngFor="let comment of comments; let idx=index">
                 <img class="comment-owner-profile-pic"[src]="getCommentOwnerProfilePicSource(idx)" alt="Profile Picture">
-                <span class="comment-owner-name">{{comment.owner_name}}</span>
+                <span class="comment-owner-name" (click)="displayPortfolio(comment.owner)">{{comment.owner_name}}</span>
                 <div class="comment-date">{{comment.createdAt | date : 'medium'}}</div>
                 <div class="comment"> {{comment.comment}}</div>
             </div>

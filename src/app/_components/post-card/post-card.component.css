@@ -2,6 +2,8 @@
     height : 50px;
     width: 50px;
     border-radius: 50%;
+    font-size : small;
+    cursor: pointer;
 }
 
 .col-2{
@@ -25,10 +27,12 @@
 
 .bi-eye-fill{
     color: green;
+    cursor: pointer;
 }
 
 .bi-hand-thumbs-up-fill{
-    color : blue
+    color : blue;
+    cursor: pointer
 }
 
 .card-footer{

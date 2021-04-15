@@ -40,3 +40,7 @@ h6{
     margin-bottom: 0px;
     margin-top : 5px
 }
+
+.connection-name{
+    cursor: pointer;
+}

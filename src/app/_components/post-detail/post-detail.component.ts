@@ -4,6 +4,7 @@ import { Comment } from 'src/app/_model/Comment';
 import { Like } from 'src/app/_model/like';
 import { Post } from 'src/app/_model/post';
 import { FeedsService } from 'src/app/_services/feeds.service';
+import { PortfolioService } from 'src/app/_services/portfolio.service';
 import { ApiPaths } from 'src/assets/apiPaths';
 
 @Component({
@@ -23,7 +24,8 @@ export class PostDetailComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<PostDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private feedsService : FeedsService) {
+    private feedsService : FeedsService,
+    private portfolioService : PortfolioService) {
       this.post = data.post
       this.comments = data.comments 
      }
@@ -94,6 +96,10 @@ export class PostDetailComponent implements OnInit {
     ).finally(
       () => {this.likeLoading = false}
     )
+  }
+
+  displayPortfolio(userId : string){
+    this.portfolioService.generatePortfolioView(userId)
   }
 
 }

@@ -45,8 +45,6 @@ export class PortfolioService {
 
     this.userService.getUserPortFolio(userId).then(
       response => {
-        console.log("this is a response")
-        console.log(response)
         this.portfolio = this.formPortfolio(response)
         console.log(this.portfolio)
         let modalConfig : MatDialogConfig = new MatDialogConfig()
