@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Connection } from 'src/app/_model/connection';
+import { AlertService } from 'src/app/_services/alert.service';
 import { UserService } from 'src/app/_services/user.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 
 @Component({
   selector: 'app-follower',
@@ -16,7 +18,8 @@ export class FollowerComponent implements OnInit {
   processing : Array<boolean>
 
 
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService,
+    private alertService : AlertService) { }
 
   ngOnInit() {
     this.searchConnections()
@@ -27,8 +30,6 @@ export class FollowerComponent implements OnInit {
     this.loading = true
     let searchPromise : Promise<any> = this.userService.searchFollowerConnections()
     searchPromise.then( response=>{
-      console.log(response.followees)
-      
       this.processing = new Array<boolean>(response.followees.length)
       if(response.followees.length % this.groupCount == 0){
         this.searchGroupContentCount = response.followees.length / this.groupCount
@@ -42,7 +43,7 @@ export class FollowerComponent implements OnInit {
       }
        
     }).catch(error => {
-      console.log(error)
+      this.alertService.generateAlert(AlertMessage.getAletMessage('searchConnectionError'))
     }).finally( ()=>{this.loading = false})
   }
 
@@ -59,7 +60,9 @@ export class FollowerComponent implements OnInit {
           this.connections[idx].following = !this.connections[idx].following
         }
       ).catch(
-        error => { console.log(error) } 
+        error => { 
+          this.alertService.generateAlert(AlertMessage.getAletMessage('updateConnectionError'))
+         } 
       ).finally(
         () => {this.processing[idx] = false }
       )
@@ -71,7 +74,9 @@ export class FollowerComponent implements OnInit {
           this.connections[idx].following = !this.connections[idx].following
         }
       ).catch(
-        error => {  console.log(error) }
+        error => {  
+          this.alertService.generateAlert(AlertMessage.getAletMessage('updateConnectionError'))
+         }
       ).finally(
         () => {this.processing[idx] = false}
       )

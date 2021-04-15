@@ -119,6 +119,10 @@ export class UserService {
     return this.http.post<any>(ApiPaths.getApiPath("logoutAllSession", undefined), null).toPromise()
   }
 
+  public logoutSession() : Promise<any>{
+    return this.http.post<any>(ApiPaths.getApiPath("logout", undefined), null).toPromise()
+  }
+
   public getUserPortFolio(userId : string) : Promise<any>{
     return this.http.get<any>(ApiPaths.getApiPath("getUserPortfolio", userId)).toPromise()
   }

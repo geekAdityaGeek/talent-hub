@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Alert } from 'src/app/_model/alert';
+import { AlertService } from 'src/app/_services/alert.service';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private authenticationService : AuthenticationService,
     private router : Router,
-    private route : ActivatedRoute) {
+    private route : ActivatedRoute,
+    private alertService : AlertService) {
       //If user is already logged in then redirect to home page
       if(this.authenticationService.getLoggedInUser()){
         this.router.navigate(["/"])
@@ -44,8 +48,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("loggedInUser", JSON.stringify(response)) 
       this.authenticationService.setLoggedInUser(response)
       this.router.navigate([this.returnUrl]);
-    }).catch(error => {
-      console.log(error)
+    }).catch(error => {debugger
+      this.alertService.generateAlert(AlertMessage.getAletMessage('invalidLogin'))
       this.loading = false
     })
 

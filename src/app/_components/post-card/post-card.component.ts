@@ -5,6 +5,7 @@ import { AlertService } from 'src/app/_services/alert.service';
 import { FeedsService } from 'src/app/_services/feeds.service';
 import { PortfolioService } from 'src/app/_services/portfolio.service';
 import { PostDetailService } from 'src/app/_services/post-detail.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 import { ApiPaths } from 'src/assets/apiPaths';
 
 @Component({
@@ -19,7 +20,8 @@ export class PostCardComponent implements OnInit {
 
   constructor(private feedsService : FeedsService,
     private postDetailService : PostDetailService,
-    private portfolioService : PortfolioService) { }
+    private portfolioService : PortfolioService,
+    private alertService : AlertService) { }
 
   ngOnInit() {
     console.log(this.post)
@@ -58,8 +60,9 @@ export class PostCardComponent implements OnInit {
         this.post.userLike = response.user_like
       }
     ).catch(
-      (error) => {
-        console.log(error)
+      error => {
+          this.alertService.generateAlert(AlertMessage.getAletMessage('updateLikeError'))
+        
       }
     ).finally(
       () => {this.likeLoading = false}

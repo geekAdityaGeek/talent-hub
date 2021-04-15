@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/_model/post';
+import { AlertService } from 'src/app/_services/alert.service';
 import { FeedsService } from 'src/app/_services/feeds.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 
 @Component({
   selector: 'app-previous-uploads',
@@ -13,7 +15,8 @@ export class PreviousUploadsComponent implements OnInit {
   postsLoading = false
   posts : Array<Post> = new Array<Post>()
   postsProcessing : Array<boolean>
-  constructor(private feedsService : FeedsService) { }
+  constructor(private feedsService : FeedsService,
+    private alertService : AlertService)  { }
 
 
   ngOnInit() {
@@ -35,7 +38,7 @@ export class PreviousUploadsComponent implements OnInit {
       }
     ).catch(
       error => {
-        console.log(error)
+        this.alertService.generateAlert(AlertMessage.getAletMessage("serverDataFetchError")) 
       }
     ).finally(
       () => {
@@ -65,7 +68,7 @@ export class PreviousUploadsComponent implements OnInit {
       }
     )
     .catch(
-      error => {console.log(error)}
+      error => {this.alertService.generateAlert(AlertMessage.getAletMessage("postUpdateError"))}
     ).finally(
       () => {this.postsProcessing[idx] = false}
     )
@@ -82,7 +85,7 @@ export class PreviousUploadsComponent implements OnInit {
         else if(this.currentIndex == this.posts.length-2) this.currentIndex = this.currentIndex -1
       }
     ).catch(
-      error => {console.log(error)}
+      error => { this.alertService.generateAlert(AlertMessage.getAletMessage("postUpdateError"))}
     ).finally(
       ()=> {this.postsProcessing[idx] = false}
     )

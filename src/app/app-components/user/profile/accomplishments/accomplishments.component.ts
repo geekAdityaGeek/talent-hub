@@ -2,7 +2,9 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Accomplishment } from 'src/app/_model/accomplishment';
+import { AlertService } from 'src/app/_services/alert.service';
 import { UserService } from 'src/app/_services/user.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 
 @Component({
   selector: 'app-accomplishments',
@@ -15,9 +17,9 @@ export class AccomplishmentsComponent implements OnInit {
   accomplishmentForm : FormGroup
   loading : boolean = false
   accomplishments : Array<Accomplishment> = new Array<Accomplishment>()
-
+  
   constructor(private userService : UserService,
-    public datepipe: DatePipe) { }
+    public datepipe: DatePipe, private alertService : AlertService) { }
   
   ngOnInit() {
 
@@ -32,13 +34,11 @@ export class AccomplishmentsComponent implements OnInit {
       response => {
         debugger
         let user = this.userService.formUserFromResponse(response)
-        console.log(user)
         this.accomplishments = user.accomplishments
-        console.log(this.accomplishments)
         
       }
     ).catch(
-      error => {console.log(error)}
+      error => {  this.alertService.generateAlert(AlertMessage.getAletMessage('serverDataFetchError'))}
     ).finally(
       ()=>{this.loading = false}
     )
@@ -46,26 +46,26 @@ export class AccomplishmentsComponent implements OnInit {
 
   addAccomplishment(){
 
-
+    let accomplishmentToBeSaved = Array.from(this.accomplishments)
     this.addingAccomplishment = true
     let accomplishment : Accomplishment = new Accomplishment()
     accomplishment.title = this.accomplishmentForm.get('title').value
     accomplishment.description = this.accomplishmentForm.get('description').value
     accomplishment.date = new Date(this.accomplishmentForm.get('accomplishmentDate').value)
 
-    this.accomplishments.push(accomplishment)
-    this.saveAccomplishment()    
+    accomplishmentToBeSaved.push(accomplishment)
+    this.saveAccomplishment(accomplishmentToBeSaved)    
   }
 
-  saveAccomplishment(){
-    this.userService.updateUser({'accomplishments' : this.accomplishments}).then(
-      (response) => {debugger
-        console.log(response)
+  saveAccomplishment(accomplishmentToBeSaved){
+    this.userService.updateUser({'accomplishments' : accomplishmentToBeSaved}).then(
+      (response) => {
+        this.accomplishments = Array.from(accomplishmentToBeSaved)
         this.accomplishmentForm.reset()
       }
     ).catch(
       (error) => {
-        console.log(error)
+        this.alertService.generateAlert(AlertMessage.getAletMessage('accomplishmentSaveError'))
       }
     ).finally(
       () => { this.addingAccomplishment = false}
@@ -73,8 +73,9 @@ export class AccomplishmentsComponent implements OnInit {
   }
 
   deleteAccomplishment(idx : number){
-    this.accomplishments.splice(idx,1)
-    this.saveAccomplishment()
+    let accomplishmentToBeSaved = Array.from(this.accomplishments)
+    accomplishmentToBeSaved.splice(idx,1)
+    this.saveAccomplishment(accomplishmentToBeSaved)
   }
 
   updateAccomplishment(idx){

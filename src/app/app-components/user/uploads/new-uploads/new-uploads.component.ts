@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Domain } from 'src/app/_model/domain';
 import { UploadPost } from 'src/app/_model/uploadPost';
+import { AlertService } from 'src/app/_services/alert.service';
 import { FeedsService } from 'src/app/_services/feeds.service';
 import { UserService } from 'src/app/_services/user.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 
 @Component({
   selector: 'app-new-uploads',
@@ -20,7 +22,8 @@ export class NewUploadsComponent implements OnInit {
   uploadedFile : File
 
   constructor(private userService : UserService,
-    private feedsService : FeedsService) { }
+    private feedsService : FeedsService,
+    private alertService : AlertService) { }
 
   ngOnInit() {
     this.newUploadForm = new FormGroup({
@@ -41,7 +44,7 @@ export class NewUploadsComponent implements OnInit {
         this.newUploadForm.get('interest').setValue(this.domains[0])
       }
     ).catch(
-      error => { console.log(error)}
+      error => { this.alertService.generateAlert(AlertMessage.getAletMessage("serverDataFetchError"))}
     ).finally(
       () => {this.loading = false}
     )
@@ -59,9 +62,11 @@ export class NewUploadsComponent implements OnInit {
     data.contentType = contentType
 
     this.userService.uploadPost(data).then(
-      (response)=>{console.log(response)}
+      (response)=>{
+        this.alertService.generateAlert(AlertMessage.getAletMessage('postUplaodSuccess'))
+      }
     ).catch(
-      (error) => { console.log(error)}
+      (error) => { this.alertService.generateAlert(AlertMessage.getAletMessage('postDetailsSaveError')) }
     ).finally(
       () => {this.uploading = false; this.resetForm()}
     )
@@ -84,13 +89,12 @@ export class NewUploadsComponent implements OnInit {
       fileData.append('file', this.uploadedFile)
       this.userService.fileUpload(fileData).then(
         response => {    
-          console.log(response)      
           let filenames : Array<string> = new Array<string>()
           filenames.push(response.file.filename)
           this.uploadPostDetails(filenames, response.file.contentType)
         }
       ).catch(
-        error => { console.log(error) }
+        error => { this.alertService.generateAlert(AlertMessage.getAletMessage('fileUploadError')) }
       ).finally(
         () => {this.uploading = false}
       )

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/_model/user';
+import { AlertService } from 'src/app/_services/alert.service';
 import { UserService } from 'src/app/_services/user.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 
 @Component({
   selector: 'app-settings',
@@ -12,7 +13,8 @@ export class SettingsComponent implements OnInit {
 
   loading = false
   upadtePasswordForm : FormGroup
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService,
+    private alertService : AlertService) { }
 
   ngOnInit() {
     this.upadtePasswordForm = new FormGroup({
@@ -26,11 +28,13 @@ export class SettingsComponent implements OnInit {
     this.loading = true
     this.userService.updateUser(data).then(
       response => {
-        console.log(response)
+        this.alertService.generateAlert(AlertMessage.getAletMessage("updatePasswordSuccess"))
         this.upadtePasswordForm.reset()
       }
     ).catch(
-      error => { console.log(error) }
+      error => { 
+        this.alertService.generateAlert(AlertMessage.getAletMessage("updatePasswordError"))
+       }
     ).finally( () => { this.loading = false })
   }
 

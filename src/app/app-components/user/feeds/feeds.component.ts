@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/_model/domain';
 import { Post } from 'src/app/_model/post';
+import { AlertService } from 'src/app/_services/alert.service';
 
 import { FeedsService } from 'src/app/_services/feeds.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 
 @Component({
   selector: 'app-feeds',
@@ -16,7 +18,8 @@ export class FeedsComponent implements OnInit {
   postsLoading = false
   domains : Array<Domain> = new Array<Domain>()
   posts : Array<Post> = new Array<Post>()
-  constructor(private feedsService : FeedsService) { }
+  constructor(private feedsService : FeedsService,
+    private alertService :AlertService) { }
 
 
   ngOnInit() {
@@ -34,7 +37,7 @@ export class FeedsComponent implements OnInit {
       }
     ).catch(
       error => {
-        console.log(error)
+        this.alertService.generateAlert(AlertMessage.getAletMessage('serverDataFetchError'))
       }
     ).finally(
       () => { this.domainLoading = false}
@@ -51,8 +54,8 @@ export class FeedsComponent implements OnInit {
             let post : Post = this.feedsService.convertToPost(response[idx])
             this.posts.push(post)
           }
-          console.log(this.posts)
-        }).catch( error => { console.log(error)} )
+          
+        }).catch( error => { this.alertService.generateAlert(AlertMessage.getAletMessage('serverDataFetchError'))} )
         .finally(()=>{ this.postsLoading = false })
   }
 

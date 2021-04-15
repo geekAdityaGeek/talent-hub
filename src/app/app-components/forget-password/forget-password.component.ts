@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AlertService } from 'src/app/_services/alert.service';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 
 @Component({
   selector: 'app-forget-password',
@@ -13,7 +15,8 @@ export class ForgetPasswordComponent implements OnInit {
   forgetPasswordForm : FormGroup
   
 
-  constructor(private authenticationService : AuthenticationService) { }
+  constructor(private authenticationService : AuthenticationService,
+    private alerService : AlertService) { }
 
   ngOnInit() {
     this.forgetPasswordForm = new FormGroup({
@@ -29,9 +32,13 @@ export class ForgetPasswordComponent implements OnInit {
     this.loading = true
     let updatePassPromise = this.authenticationService.forgetPassword(this.forgetPasswordForm.get('email').value)
     updatePassPromise.then(
-      response => {   console.log(response)   }
+      response => {   
+        this.alerService.generateAlert(AlertMessage.getAletMessage('forgetPasswordSuccess'))
+      }
     ).catch(
-      error => { console.log(error) }
+      error => { 
+        this.alerService.generateAlert(AlertMessage.getAletMessage('forgetPasswordError'))
+      }
     ).finally(
       ()=>{this.loading = false}
     )

@@ -32,7 +32,6 @@ export class ConnectionCardComponent implements OnInit {
   }
 
   displayPortfolio(){
-    //console.log(this.connection)
     this.portfolioService.generatePortfolioView(this.connection.id)
   }
 

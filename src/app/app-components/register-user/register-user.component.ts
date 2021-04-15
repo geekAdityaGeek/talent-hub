@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AlertService } from 'src/app/_services/alert.service';
 import { UserService } from 'src/app/_services/user.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 
 @Component({
   selector: 'app-register-user',
@@ -14,7 +16,8 @@ export class RegisterUserComponent implements OnInit {
   confirmPassword : string
   profilePic : File
 
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService, 
+    private alertService : AlertService) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -41,17 +44,19 @@ export class RegisterUserComponent implements OnInit {
         this.registerForm.get('profilePicUrl').setValue(response.file.filename)
         let registrationPromise : Promise<any> = this.userService.registerUser(this.registerForm)
         registrationPromise.then(response => {
-            console.log(response)
             this.registerForm.reset()
             for(let idx in this.registerForm.controls){
               this.registerForm.controls[idx].setErrors(null)
             }
+            this.alertService.generateAlert(AlertMessage.getAletMessage('registrationSuccess'))
          })
-        .catch(error => { console.log(error)} )
+        .catch(error => { 
+          this.alertService.generateAlert(AlertMessage.getAletMessage('registrationError'))
+        } )
         
       }
     ).catch(
-      error => { console.log() }
+      error => { this.alertService.generateAlert(AlertMessage.getAletMessage('fileUploadError')) }
     ).finally(
       ()=>{this.loading = false}
     )

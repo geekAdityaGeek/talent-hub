@@ -1,15 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { domain } from 'process';
-import { Accomplishment } from 'src/app/_model/accomplishment';
-import { Domain } from 'src/app/_model/domain';
 import { Portfolio } from 'src/app/_model/portfolio';
-import { Post } from 'src/app/_model/post';
-import { User } from 'src/app/_model/user';
+import { AlertService } from 'src/app/_services/alert.service';
 import { PostDetailService } from 'src/app/_services/post-detail.service';
 import { UserService } from 'src/app/_services/user.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 import { ApiPaths } from 'src/assets/apiPaths';
-import { PostDetailComponent } from '../post-detail/post-detail.component';
 
 @Component({
   selector: 'app-portfolio-modal',
@@ -24,7 +20,8 @@ export class PortfolioModalComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<PortfolioModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Portfolio,
     private postDetailService : PostDetailService,
-    private userService : UserService) { 
+    private userService : UserService,
+    private alerService : AlertService) { 
       this.portfolio = data
       console.log(this.portfolio)
     }
@@ -45,9 +42,12 @@ export class PortfolioModalComponent implements OnInit {
     this.userService.follow(this.portfolio.basicDetails.id).then(
       response => {
         this.portfolio.isFollowing = !this.portfolio.isFollowing
+        this.portfolio.totalFollowers = this.portfolio.totalFollowers + 1
       }
     ).catch(
-      error => console.log(error)
+      error => {
+        this.alerService.generateAlert(AlertMessage.getAletMessage('updateConnectionError'))
+      }
     ).finally(()=>this.connetionProcessing = false)
   }
 
@@ -56,9 +56,12 @@ export class PortfolioModalComponent implements OnInit {
     this.userService.unfollow(this.portfolio.basicDetails.id).then(
       response => {
         this.portfolio.isFollowing = !this.portfolio.isFollowing
+        this.portfolio.totalFollowers = this.portfolio.totalFollowers - 1
       }
     ).catch(
-      error => console.log(error)
+      error => {
+        this.alerService.generateAlert(AlertMessage.getAletMessage('updateConnectionError'))
+      }
     ).finally(()=>this.connetionProcessing = false)
 
   }

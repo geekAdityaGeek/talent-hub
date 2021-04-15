@@ -3,9 +3,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Comment } from 'src/app/_model/Comment';
 import { Like } from 'src/app/_model/like';
 import { Post } from 'src/app/_model/post';
+import { AlertService } from 'src/app/_services/alert.service';
 import { FeedsService } from 'src/app/_services/feeds.service';
 import { PortfolioService } from 'src/app/_services/portfolio.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 import { ApiPaths } from 'src/assets/apiPaths';
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-post-detail',
@@ -25,7 +28,8 @@ export class PostDetailComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<PostDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private feedsService : FeedsService,
-    private portfolioService : PortfolioService) {
+    private portfolioService : PortfolioService,
+    private alertService : AlertService) {
       this.post = data.post
       this.comments = data.comments 
      }
@@ -58,7 +62,9 @@ export class PostDetailComponent implements OnInit {
         this.comment = null
       }
     ).catch(
-      error => {console.log(error)}
+      error => {
+        this.alertService.generateAlert(AlertMessage.getAletMessage('commentPostError'))
+      }
     ).finally(
       () => {this.posting = false}
     )
@@ -85,13 +91,12 @@ export class PostDetailComponent implements OnInit {
     data.parent_type = "Post"
     this.feedsService.increaseLikes(data).then(
       (response) => {
-        console.log(response)
         this.post.likes = response.likes
         this.post.userLike = response.user_like
       }
     ).catch(
       (error) => {
-        console.log(error)
+        this.alertService.generateAlert(AlertMessage.getAletMessage('updateLikeError'))        
       }
     ).finally(
       () => {this.likeLoading = false}

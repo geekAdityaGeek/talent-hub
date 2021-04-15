@@ -24,13 +24,19 @@ export class AppComponent {
 
   logout(){
     this.logginOut = true
-    this.userService.logoutAllSessions().then(
+    //this.userService.logoutAllSessions().then(
+    this.userService.logoutSession().then(
       response => {
         this.authenticationService.logout()
         this.router.navigate(['/login']);
       }
     ).catch(
-      error => {console.log(error)}
+      error => {
+        if(error.status = 401){
+          this.authenticationService.logout()
+          this.router.navigate(['/login']);
+        }
+      }
     ).finally(
       () => { this.logginOut = false}
     )

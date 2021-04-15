@@ -21,7 +21,8 @@ hr{
 }
 
 .bi-hand-thumbs-up-fill{
-    color : blue
+    color : blue;
+    cursor : pointer;
 }
 
 .userNotLiked{
