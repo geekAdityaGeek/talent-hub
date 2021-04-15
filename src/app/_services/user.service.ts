@@ -113,4 +113,8 @@ export class UserService {
   public profilePicUpload(formData : FormData) : Promise<any>{
     return this.http.post<any>(ApiPaths.getApiPath("profilePicUpload",undefined), formData).toPromise()
   }
+
+  public logoutAllSessions() : Promise<any>{
+    return this.http.post<any>(ApiPaths.getApiPath("logoutAllSession", undefined), null).toPromise()
+  }
 }

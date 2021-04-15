@@ -45,7 +45,7 @@ export class AuthenticationService {
 
   logout(){
     localStorage.clear()
-    this.currentUserSubject.next(null)
+    this.currentUserSubject.next(null)    
   }
 
   forgetPassword(email : string) : Promise<any>{
