@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Comment } from 'src/app/_model/Comment';
+import { Like } from 'src/app/_model/like';
 import { Post } from 'src/app/_model/post';
 import { FeedsService } from 'src/app/_services/feeds.service';
 import { ApiPaths } from 'src/assets/apiPaths';
@@ -17,6 +18,8 @@ export class PostDetailComponent implements OnInit {
   
   comment : string
   posting : boolean = false
+
+  likeLoading : boolean = false
 
   constructor(public dialogRef: MatDialogRef<PostDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -71,6 +74,26 @@ export class PostDetailComponent implements OnInit {
       return ApiPaths.getApiPath("getFile",this.post.filenames[0])
     }
     return null
+  }
+
+  increaseLikes(){
+    this.likeLoading = true
+    let data : Like = new Like()
+    data.parent_id = this.post.id
+    data.parent_type = "Post"
+    this.feedsService.increaseLikes(data).then(
+      (response) => {
+        console.log(response)
+        this.post.likes = response.likes
+        this.post.userLike = response.user_like
+      }
+    ).catch(
+      (error) => {
+        console.log(error)
+      }
+    ).finally(
+      () => {this.likeLoading = false}
+    )
   }
 
 }

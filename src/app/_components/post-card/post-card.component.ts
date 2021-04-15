@@ -20,6 +20,7 @@ export class PostCardComponent implements OnInit {
     private postDetailService : PostDetailService) { }
 
   ngOnInit() {
+    console.log(this.post)
   }
 
   getProfilePicSource(){
@@ -52,7 +53,7 @@ export class PostCardComponent implements OnInit {
       (response) => {
         console.log(response)
         this.post.likes = response.likes
-        this.post.userLike = response.userLike
+        this.post.userLike = response.user_like
       }
     ).catch(
       (error) => {

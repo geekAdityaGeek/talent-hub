@@ -28,7 +28,7 @@ export class FeedsService {
     post.title = postResponse.title
     post.description = postResponse.description
     post.likes = postResponse.likes
-    post.userLike = postResponse.userLike
+    post.userLike = postResponse.user_like
     post.portfolio = postResponse.portfolio
     post.filenames = postResponse.filenames
     post.domainIds = postResponse.domain_ids

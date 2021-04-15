@@ -177,9 +177,7 @@ export class BasicDetailsComponent implements OnInit {
   }
 
   getSource(){
-    console.log("prifile pic : ")
     if(this.user.profilePicUrl){
-      console.log(ApiPaths.getApiPath("getFile", this.user.profilePicUrl))
       return ApiPaths.getApiPath("getFile", this.user.profilePicUrl)
     }
     return '../../../../assets/images/default_profile_pic.png'

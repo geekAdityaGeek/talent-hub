@@ -30,10 +30,11 @@ export class AccomplishmentsComponent implements OnInit {
     this.loading = true
     this.userService.getUserDetails().then(
       response => {
-        
+        debugger
         let user = this.userService.formUserFromResponse(response)
-        this.accomplishments = user.accomplishments
         console.log(user)
+        this.accomplishments = user.accomplishments
+        console.log(this.accomplishments)
         
       }
     ).catch(

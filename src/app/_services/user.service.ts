@@ -35,6 +35,7 @@ export class UserService {
   }
 
   public formAccomplishmentFromResponse(response : any) : Accomplishment{
+    console.log(response)
     let accomplishment : Accomplishment = new Accomplishment()
     accomplishment.id = response._id
     accomplishment.title = response.title
@@ -57,7 +58,7 @@ export class UserService {
     user.profilePicUrl = response.profilePicUrl
     user.accomplishments = new Array<Accomplishment>()
     for(let idx in response.accomplishments ){
-      user.accomplishments.push(this.formAccomplishmentFromResponse(response.accomplishments))
+      user.accomplishments.push(this.formAccomplishmentFromResponse(response.accomplishments[idx]))
     } 
      
     return user
