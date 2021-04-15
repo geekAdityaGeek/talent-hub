@@ -3,6 +3,8 @@
     width: 50px;
     border-radius: 50%;
     cursor : pointer;
+    font-size: small;
+
 }
 
 .post-title{
@@ -34,7 +36,8 @@ hr{
     height : 30px;
     width: 30px;
     border-radius: 50%;
-    margin : 0.1rem
+    margin : 0.1rem;
+    font-size : small;
 }
 
 .comment-date{

@@ -4,8 +4,14 @@
         <div class="profile-pic-section">
             <img class="profile-pic" [src]="getProfilePictureSrource()" alt="Profile-picture">
             <div class="connection-section d-flex justify-content-center" *ngIf="!portfolio.isSameUser">
-                <button class="btn btn-primary btn-sm" *ngIf="!portfolio.isFollowing" (click)="follow()"> + Follow </button>
-                <button class="btn btn-primary btn-sm" *ngIf="portfolio.isFollowing" (click)="unfollow()"> - Unfollow </button>
+                <button class="btn btn-primary btn-sm" *ngIf="!portfolio.isFollowing" (click)="follow()" [disabled]="connetionProcessing">
+                     + Follow 
+                     <span *ngIf="connetionProcessing" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                </button>
+                <button class="btn btn-primary btn-sm" *ngIf="portfolio.isFollowing" (click)="unfollow()" [disabled]="connetionProcessing"> 
+                    - Unfollow 
+                    <span *ngIf="connetionProcessing" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                </button>
             </div>
             <div class="interest-section">
                 <h5>Interests</h5>
