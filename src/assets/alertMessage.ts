@@ -87,6 +87,16 @@ export class AlertMessage{
         "postUpdateError" : {
             message : "Unable to update posts. Please try again later",
             type : AlertType.success
+        },
+
+        "profileFeildSaveError" : {
+            message : "Unable to update the profile feild. Please try again later",
+            type : AlertType.error
+        },
+
+        "profileFeildSaveSuccess" : {
+            message : "Profile Feild has been successfully updated",
+            type : AlertType.success
         }
         
 

@@ -4,8 +4,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Domain } from 'src/app/_model/domain';
 
 import { User } from 'src/app/_model/user';
+import { AlertService } from 'src/app/_services/alert.service';
 import { FeedsService } from 'src/app/_services/feeds.service';
 import { UserService } from 'src/app/_services/user.service';
+import { AlertMessage } from 'src/assets/alertMessage';
 import { ApiPaths } from 'src/assets/apiPaths';
 
 @Component({
@@ -26,7 +28,7 @@ export class BasicDetailsComponent implements OnInit {
   profilePic : File
   
   constructor(private userService : UserService,
-    private feedsService : FeedsService,
+    private feedsService : FeedsService, private alertService : AlertService,
     public datepipe: DatePipe) { 
       this.editableFeilds['name'] = false
       this.editableFeilds['mobileNumber'] = false
@@ -63,7 +65,7 @@ export class BasicDetailsComponent implements OnInit {
         }
       }
     ).catch(
-      error => { console.log(error) }
+      error => { this.alertService.generateAlert(AlertMessage.getAletMessage("serverDataFetchError")) }
     ).finally(() => {this.formLoading = false})
 
     this.formLoading = true
@@ -76,7 +78,7 @@ export class BasicDetailsComponent implements OnInit {
         this.formBasicDetailsForm()
       }
     ).catch(
-      error => {console.log(error)}
+      error => { this.alertService.generateAlert(AlertMessage.getAletMessage("serverDataFetchError")) }
     ).finally(
       ()=>{ this.formLoading = false}
     )
@@ -92,21 +94,21 @@ export class BasicDetailsComponent implements OnInit {
       }
     ).catch(
       error => {
-        console.log(error)
+        this.alertService.generateAlert(AlertMessage.getAletMessage("serverDataFetchError"))
       }
     ).finally(
       () => { this.formLoading = false}
     )
   }
 
-  saveDetails(data, key){
+  saveDetails(data, key, label){
     this.editableFeilds[key] = true
     this.userService.updateUser(data).then(
       response => {
-        this.user.name = data[key]
+        this.alertService.generateAlert(AlertMessage.getAletMessage("profileFeildSaveSuccess"))
       }
     ).catch(
-      error => { console.log(error) }
+      error => { this.alertService.generateAlert(AlertMessage.getAletMessage("profileFeildSaveError")) }
     ).finally(
       () => { this.editableFeilds[key] = false }
     )    
@@ -136,7 +138,10 @@ export class BasicDetailsComponent implements OnInit {
     this.userService.updateUser({'domain_ids' : domain_ids}).then(
       response => { this.user.domain_ids = domain_ids}
     ).catch(
-      error => {console.log(error)}
+      error => { 
+        this.alertService.generateAlert(AlertMessage.getAletMessage("profileFeildSaveError")),
+        this.userDomainInterests.pop()
+      }
     ).finally(
       () => { this.editableFeilds['interest'] = false}
     )
@@ -157,19 +162,18 @@ export class BasicDetailsComponent implements OnInit {
       fileData.append('file', this.profilePic)
       this.userService.fileUpload(fileData).then(
         response => {    
-          console.log(response) 
           let profilepicFilename =   response.file.filename
           this.userService.updateUser({profilePicUrl : response.file.filename})
           .then(
             response => { 
               this.user.profilePicUrl = profilepicFilename
-              console.log(response)}
+            }
           ).catch(
-            error => console.log(error)
+            error => {this.alertService.generateAlert(AlertMessage.getAletMessage("profileFeildSaveError"))}
           )   
         }
       ).catch(
-        error => { console.log(error) }
+        error => { this.alertService.generateAlert(AlertMessage.getAletMessage("fileUploadError")) }
       ).finally(
         () => {this.uploading = false}
       )
