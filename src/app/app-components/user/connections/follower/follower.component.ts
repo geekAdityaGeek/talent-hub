@@ -30,15 +30,15 @@ export class FollowerComponent implements OnInit {
     this.loading = true
     let searchPromise : Promise<any> = this.userService.searchFollowerConnections()
     searchPromise.then( response=>{
-      this.processing = new Array<boolean>(response.followees.length)
-      if(response.followees.length % this.groupCount == 0){
-        this.searchGroupContentCount = response.followees.length / this.groupCount
+      this.processing = new Array<boolean>(response.followers.length)
+      if(response.followers.length % this.groupCount == 0){
+        this.searchGroupContentCount = response.followers.length / this.groupCount
       }else{
-        this.searchGroupContentCount = Math.floor(response.followees.length / this.groupCount)+1
+        this.searchGroupContentCount = Math.floor(response.followers.length / this.groupCount)+1
       }
       this.connections = new Array<Connection>()
-      for(let idx in response.followees){
-        let connection = this.userService.formConnection(response.followees[idx])
+      for(let idx in response.followers){
+        let connection = this.userService.formConnection(response.followers[idx])
         this.connections.push(connection)
       }
        

@@ -6,6 +6,10 @@
     min-height : 80vh;
 }
 
+.router-content{
+    width: 150vh;
+}
+
 
 a.nav-link{
     font-size: small;
