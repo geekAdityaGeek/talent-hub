@@ -41,5 +41,9 @@ export class AppComponent {
       () => { this.logginOut = false}
     )
   }
+
+  getLogoSource(){
+    return "../assets/images/logo_full.jpeg"
+  }
     
 }

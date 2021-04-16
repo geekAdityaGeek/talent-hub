@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <a class="navbar-brand d-none d-lg-inline-block" href="#">
-        Icon    
+        <img class="logo" [src]="getLogoSource()" 
+        alt="logo">    
     </a>
-    <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
-        <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F7c%2F51%2F98%2F7c5198d2a0751fa76c8433dba4a1a12a.jpg&imgrefurl=https%3A%2F%2Fin.pinterest.com%2Fpin%2F565624034430306390%2F&tbnid=7V3LU1kPELhuuM&vet=12ahUKEwiQvcfDs_rvAhXUNCsKHQhmAY0QMygAegUIARDVAQ..i&docid=DW92YkIP_O3E7M&w=618&h=412&q=sample%20logo&client=ubuntu&ved=2ahUKEwiQvcfDs_rvAhXUNCsKHQhmAY0QMygAegUIARDVAQ" 
+    <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" routerLink="/">
+        <img class="logo" [src]="getLogoSource()" 
         alt="logo">
     </a>            
     <div class="collapse navbar-collapse flex-grow-1 text-right" id="top-navbar">

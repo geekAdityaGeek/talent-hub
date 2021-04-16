@@ -19,4 +19,8 @@ export class UserComponent implements OnInit {
     this.logoutEmitter.emit()
   }
 
+  getLogoSource(){
+    return "../../../assets/images/logo.jpeg"
+  }
+
 }
