@@ -9,6 +9,7 @@ export class ApiPaths{
         registerUser : "user",
         getAllDomains : "alldomains",
         postByDomainId : "posts/#",
+        allPost : "talentfeed",
         searchConnections : "search/#",
         getFile : "files/#",
         follow : "follow/#",

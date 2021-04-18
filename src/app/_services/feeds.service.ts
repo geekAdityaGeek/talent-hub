@@ -60,7 +60,10 @@ export class FeedsService {
 
   getPostsByDomainId(domain) : Promise<any>{
     return this.http.get<any>(ApiPaths.getApiPath("postByDomainId", domain.id)).toPromise()
+  }
 
+  getAllPost() : Promise<any>{
+    return this.http.get<any>(ApiPaths.getApiPath("allPost", undefined)).toPromise()
   }
 
   public increaseLikes(data : Like) : Promise<any> {

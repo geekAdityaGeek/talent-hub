@@ -19,7 +19,11 @@ export class FeedsComponent implements OnInit {
   domains : Array<Domain> = new Array<Domain>()
   posts : Array<Post> = new Array<Post>()
   constructor(private feedsService : FeedsService,
-    private alertService :AlertService) { }
+    private alertService :AlertService) {
+      let allDOmain : Domain= new Domain()
+      allDOmain.name = "All" 
+      this.domains.push(allDOmain)
+    }
 
 
   ngOnInit() {
@@ -47,16 +51,30 @@ export class FeedsComponent implements OnInit {
   loadPosts(idx : number){
     this.postsLoading = true
     this.posts = new Array<Post>()
-    this.feedsService.getPostsByDomainId(this.domains[idx])
-        .then( response => {
-          this.postsLoading = false
+    if(idx != 0){
+      this.feedsService.getPostsByDomainId(this.domains[idx])
+          .then( response => {
+            for(let idx in response){
+              let post : Post = this.feedsService.convertToPost(response[idx])
+              this.posts.push(post)
+            }
+            
+          }).catch( error => { this.alertService.generateAlert(AlertMessage.getAletMessage('serverDataFetchError'))} )
+          .finally(()=>{ this.postsLoading = false })
+    }else{
+     this.feedsService.getAllPost() .then(
+        response => {
           for(let idx in response){
             let post : Post = this.feedsService.convertToPost(response[idx])
             this.posts.push(post)
           }
-          
-        }).catch( error => { this.alertService.generateAlert(AlertMessage.getAletMessage('serverDataFetchError'))} )
-        .finally(()=>{ this.postsLoading = false })
+       }
+     ).catch(
+       error => { this.alertService.generateAlert(AlertMessage.getAletMessage('serverDataFetchError')) }
+     ).finally(
+       () => {this.postsLoading = false}
+     )
+    }
   }
 
   movePrevious(){
