@@ -6,3 +6,12 @@
 .contain-footer{
     margin-top: 2rem;
 }
+
+.mt-3{
+    margin-top: 1rem;
+}
+
+.error{
+    color : red;
+    font-size: small;
+}

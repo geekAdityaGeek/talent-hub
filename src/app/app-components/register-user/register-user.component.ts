@@ -1,8 +1,11 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { afterCurrentDate } from 'src/app/_helpers/Validators/OnAfterCurrentDateValidator';
 import { AlertService } from 'src/app/_services/alert.service';
 import { UserService } from 'src/app/_services/user.service';
 import { AlertMessage } from 'src/assets/alertMessage';
+import { confirmPasswordValidator } from '../../_helpers/Validators/confirmPasswordMatchValidator';
 
 @Component({
   selector: 'app-register-user',
@@ -17,17 +20,19 @@ export class RegisterUserComponent implements OnInit {
   profilePic : File
 
   constructor(private userService : UserService, 
-    private alertService : AlertService) { }
+    private alertService : AlertService,
+    private datePipe : DatePipe) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
-      'name' : new FormControl(null, [Validators.required]),
+      'name' : new FormControl(null, [Validators.required, Validators.pattern("^[a-zA-Z][a-zA-Z\\s]+$")]),
       'email' : new FormControl(null, [Validators.required, Validators.email]),
-      'dob' : new FormControl(null, [Validators.required]),
-      'pass' : new FormControl(null, [Validators.required]),
+      'dob' : new FormControl(null, [Validators.required, afterCurrentDate]),
+      'pass' : new FormControl(null, [Validators.required, Validators.pattern("^.{8,}$")]),
       'confirmPassword' : new FormControl(null, [Validators.required]) ,
       'profilePicUrl' : new FormControl(null, [])     
     })
+    this.registerForm.setValidators(confirmPasswordValidator('pass','confirmPassword'))  
   }
 
   register(){
@@ -74,5 +79,8 @@ export class RegisterUserComponent implements OnInit {
     return '../../assets/images/default_profile_pic.png'
   }
 
+  
+
+  
 
 }

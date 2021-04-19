@@ -40,8 +40,8 @@ export class BasicDetailsComponent implements OnInit {
 
   private formBasicDetailsForm(){
     this.basicDetailsForm = new FormGroup({
-      'name' : new FormControl(this.user.name, [Validators.required]),
-      'mobileNumber' : new FormControl(this.user.mobileNumber, [Validators.required]),
+      'name' : new FormControl(this.user.name, [Validators.required, Validators.pattern("^[a-zA-Z][a-zA-Z\\s]+$")]),
+      'mobileNumber' : new FormControl(this.user.mobileNumber, [Validators.required, Validators.pattern("^[0-9]{10}")]),
       'addressLine1' : new FormControl(this.user.addressLine1, []),
       'state' : new FormControl(this.user.state, []),
       'country' : new FormControl(this.user.country, []),

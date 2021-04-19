@@ -16,46 +16,58 @@
         </div>
         <form [formGroup]="registerForm" (ngSubmit)="register()">
 
-            <div class="input-group input-group-sm mb-3">
+            <div class="input-group input-group-sm mt-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="fullName-label">Full Name</span>
                 </div>
                 <input class="form-control " type="text" formControlName="name" 
                 placeholder="John Doe" aria-label="Recipient's " aria-describedby="fullName-label">                
-            </div>
+            </div>            
+            <span *ngIf="registerForm.get('name').touched && !registerForm.get('name').valid" 
+                class="error">Invalid Full Name Provided</span>
 
-            <div class="input-group input-group-sm mb-3">
+            <div class="input-group input-group-sm mt-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="dob-label">Date of Birth</span>
                 </div>
                 <input class="form-control " type="date" formControlName="dob" 
                 placeholder="" aria-label="Recipient's " aria-describedby="dob-label">                
             </div>
+            <span *ngIf="registerForm.get('dob').touched && !registerForm.get('dob').valid" 
+                class="error">Invalid Date of Birth Provided</span>
 
-            <div class="input-group input-group-sm mb-3">
+            <div class="input-group input-group-sm mt-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="email-label">Email</span>
                 </div>
                 <input class="form-control " type="email" formControlName="email" 
                 placeholder="abc@xyz.com" aria-label="Recipient's " aria-describedby="email-label">                
             </div>
-            
-            <div class="input-group input-group-sm mb-3">
+            <span *ngIf="registerForm.get('email').touched && !registerForm.get('email').valid" 
+                class="error">Invalid Email Provided</span>
+
+            <div class="input-group input-group-sm mt-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="pass-label">Password</span>
                 </div>
                 <input class="form-control " type="password" formControlName="pass" 
-                placeholder="" aria-label="Recipient's " aria-describedby="pass-label">                
+                placeholder="" aria-label="Recipient's " aria-describedby="pass-label">             
             </div>
+            <span *ngIf="registerForm.get('pass').touched && !registerForm.get('pass').valid" 
+                class="error">Either no Password provided or Password is weak</span>
 
-            <div class="input-group input-group-sm mb-3">
+            <div class="input-group input-group-sm mt-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="confPass-label">Confirm Password</span>
                 </div>
                 <input class="form-control " type="password" formControlName="confirmPassword" 
                 placeholder="" aria-label="Recipient's " aria-describedby="confPass-label">                
             </div>
-            <div class="d-flex justify-content-center">
+            <span *ngIf="registerForm.get('confirmPassword').touched && !registerForm.get('confirmPassword').valid" 
+                class="error">Confirm Password does not match actual Password</span>
+
+
+            <div class="d-flex justify-content-center mt-3">
                 <button [disabled]="loading || !registerForm.valid" class="btn btn-primary" type="submit" >
                     Register
                     <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
