@@ -23,7 +23,7 @@ export class ApiPaths{
         uploadPost : "post",
         increaseLike : "like",
         getComments : "comments/#",
-        profilePicUpload : 'profilepicupload',
+        profilePicUpload : 'uploadprofilepic',
         postComment : 'comment',
         getAllUserPosts : "user/posts",
         upadatePostByPostId : "post/#",
