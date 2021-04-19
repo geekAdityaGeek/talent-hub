@@ -26,7 +26,7 @@
 
         <div class="input-group input-group-sm mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="interest">Interests</span>
+                <span class="input-group-text" id="interest">Doamins</span>
             </div>
             <select class="form-control" type="file" formControlName='interest'
             placeholder="" aria-label="" aria-describedby="interest">
@@ -34,7 +34,8 @@
                 value="{{domain.id}}">{{domain.name}}</option>
             </select>
             <div class="input-group-append">
-                <button class="btn btn-primary" id="interest-btn" (click)="addInterest()">Add</button>
+                <button class="btn btn-primary" id="interest-btn" 
+                (click)="addInterest()">Add</button>
             </div>
         </div>
         <span class="btn btn-primary badge-btn btn-sm" *ngFor="let domainInterest of userDomainInterests; let idx = index">

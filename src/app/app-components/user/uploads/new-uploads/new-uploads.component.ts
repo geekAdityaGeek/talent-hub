@@ -28,10 +28,10 @@ export class NewUploadsComponent implements OnInit {
   ngOnInit() {
     this.newUploadForm = new FormGroup({
       'title' : new FormControl(null, [Validators.required]),
-      'description' : new FormControl(null, [Validators.required]),
+      'description' : new FormControl(null),
       'portfolioInclude' : new FormControl(false, [Validators.required]) ,
-      'interest' : new FormControl(null, [Validators.required]),
-      'fileUpload' : new FormControl(null, [Validators.required])
+      'interest' : new FormControl(null),
+      'fileUpload' : new FormControl(null)
     })
   
     this.loading = true
@@ -41,7 +41,7 @@ export class NewUploadsComponent implements OnInit {
           let domain : Domain = this.feedsService.getDomainFromResponse(response[idx])
           this.domains.push(domain)          
         }
-        this.newUploadForm.get('interest').setValue(this.domains[0])
+        this.newUploadForm.get('interest').setValue(this.domains[0].id)
       }
     ).catch(
       error => { this.alertService.generateAlert(AlertMessage.getAletMessage("serverDataFetchError"))}
@@ -103,7 +103,7 @@ export class NewUploadsComponent implements OnInit {
     }
   }
 
-  addInterest(){
+  addInterest(){debugger
 
     let domainId = this.newUploadForm.get('interest').value
     let domainInterest = this.domains.filter( (domain)=> {  return domain.id == domainId})
@@ -120,6 +120,5 @@ export class NewUploadsComponent implements OnInit {
       this.uploadedFile = event.target.files[0]
     }
   }
-
 
 }
