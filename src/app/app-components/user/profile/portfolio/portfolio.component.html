@@ -1,0 +1,16 @@
+<div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="portfolioLink">Your Portfolio Id</span>
+    </div>
+    <input class="form-control" type="text" [disabled]="true" [(ngModel)]="loggedInUserPortfolioId"
+    placeholder="" aria-label="" aria-describedby="portfolioLink">
+</div>
+
+<div class="input-group input-group-sm mb-3">
+    <input class="form-control" type="text" [(ngModel)] = "portfolioId"
+    placeholder="Enter Portfolio Link" aria-label="" aria-describedby="generate-btn">
+    <div class="input-group-prepend">
+        <button class="btm btn-primary" id="generate-btn"
+        (click)="generatePortfolio()">View Portfolio</button>
+    </div>
+</div>

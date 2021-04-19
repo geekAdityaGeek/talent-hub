@@ -10,6 +10,7 @@ import { NewConnectionsComponent } from './app-components/user/connections/new-c
 import { FeedsComponent } from './app-components/user/feeds/feeds.component';
 import { AccomplishmentsComponent } from './app-components/user/profile/accomplishments/accomplishments.component';
 import { BasicDetailsComponent } from './app-components/user/profile/basic-details/basic-details.component';
+import { PortfolioComponent } from './app-components/user/profile/portfolio/portfolio.component';
 import { ProfileComponent } from './app-components/user/profile/profile.component';
 import { SettingsComponent } from './app-components/user/profile/settings/settings.component';
 import { NewUploadsComponent } from './app-components/user/uploads/new-uploads/new-uploads.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
       {path:'basicdetails', component:BasicDetailsComponent},
       {path:'accomplishments', component : AccomplishmentsComponent},
       {path:'settings', component : SettingsComponent},
+      {path:'portfolio' , component : PortfolioComponent}
     ]},
     {path : 'uploads', component : UploadsComponent, children:[
       {path:'', pathMatch:"full", redirectTo:'newuploads'},

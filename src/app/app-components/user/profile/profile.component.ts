@@ -14,9 +14,4 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  generatePortfolio(){
-    this.portfolioService.generatePortfolioView(this.authenticationService.getLoggedInUser().id)
-  }
-
 }

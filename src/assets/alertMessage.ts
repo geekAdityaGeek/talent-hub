@@ -97,6 +97,11 @@ export class AlertMessage{
         "profileFeildSaveSuccess" : {
             message : "Profile Feild has been successfully updated",
             type : AlertType.success
+        },
+
+        "PortfolioDisplayError" : {
+            message : "Unable to generate portfolio view. Please check portfolio id, or try again later",
+            type : AlertType.error
         }
         
 

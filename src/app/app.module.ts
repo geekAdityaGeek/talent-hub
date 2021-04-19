@@ -31,6 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PostDetailComponent } from './_components/post-detail/post-detail.component';
 import { PortfolioModalComponent } from './_components/portfolio-modal/portfolio-modal.component';
+import { PortfolioComponent } from './app-components/user/profile/portfolio/portfolio.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { PortfolioModalComponent } from './_components/portfolio-modal/portfolio
     NewUploadsComponent,
     PreviousUploadsComponent,
     PostDetailComponent,
-    PortfolioModalComponent    
+    PortfolioModalComponent,
+    PortfolioComponent    
   ],
   imports: [
     BrowserModule,
