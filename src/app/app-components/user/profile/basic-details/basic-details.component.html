@@ -34,7 +34,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="dob">Date of Birth</span>
                 </div>
-                <input class="form-control" type="date" [disabled]=true [value]="nonEditableFeilds.dob"
+                <input class="form-control" type="date" [disabled]=true [value]="getNonEditableFeilds('dob')"
                 placeholder="" aria-label="" aria-describedby="dob">        
             </div>
 
@@ -44,7 +44,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="email">Email</span>
                 </div>
-                <input class="form-control" type="text" [disabled]=true [value]='nonEditableFeilds.email'
+                <input class="form-control" type="text" [disabled]=true [value]="getNonEditableFeilds('email')"
                 placeholder="" aria-label="" aria-describedby="email">        
             </div>
 

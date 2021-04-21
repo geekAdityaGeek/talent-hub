@@ -101,7 +101,7 @@ export class BasicDetailsComponent implements OnInit {
     )
   }
 
-  saveDetails(data, key, label){
+  saveDetails(data, key){
     this.editableFeilds[key] = true
     this.userService.updateUser(data).then(
       response => {
@@ -187,5 +187,9 @@ export class BasicDetailsComponent implements OnInit {
     return '../../../../assets/images/default_profile_pic.png'
   }
   
+
+  getNonEditableFeilds(key){
+    return this.nonEditableFeilds[key]
+  }
 
 }
