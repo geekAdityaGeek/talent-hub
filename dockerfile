@@ -10,5 +10,5 @@ FROM nginx:alpine
 COPY --from=builder /app/dist/talent-hub /usr/share/nginx/html
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY nginx.conf /etc/nginx/nginx.conf
-CMD "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+CMD envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
 #CMD ["nginx", "-g", "daemon off;"]
