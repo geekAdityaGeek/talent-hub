@@ -8,7 +8,8 @@ RUN npm run build --prod
 # stage 2
 FROM nginx:alpine
 COPY --from=builder /app/dist/talent-hub /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
+#COPY nginx.conf /etc/nginx/nginx.conf
+ADD ./nginx/default.conf /etc/nginx/conf.d/default.template
 
 # this part is only for deployment in heroku
-CMD sed -i -e 's/port/$PORT/g' /etc/nginx/nginx.conf && cat /etc/nginx/nginx.conf && nginx -g 'daemon off;'
+CMD sh -c "envsubst \"`env | awk -F = '{printf \" \\\\$%s\", $1}'`\" < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
