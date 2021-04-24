@@ -22,6 +22,7 @@ export class PortfolioComponent implements OnInit {
 
 
   ngOnInit() {
+    this.portfolioService.generatePortfolioView(this.loggedInUserPortfolioId)
   }
 
   generatePortfolio(){
