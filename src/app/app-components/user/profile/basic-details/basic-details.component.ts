@@ -36,6 +36,7 @@ export class BasicDetailsComponent implements OnInit {
       this.editableFeilds['state'] = false
       this.editableFeilds['country'] = false
       this.editableFeilds['interest'] = false
+      this.formBasicDetailsForm()
     }
 
   private formBasicDetailsForm(){

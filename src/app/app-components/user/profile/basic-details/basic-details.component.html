@@ -22,7 +22,7 @@
                 <input class="form-control" type="text" formControlName="name"
                 placeholder="" aria-label="" aria-describedby="name">    
                 <div class="input-group-append">
-                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('name').valid || editableFeilds['name']"
+                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('name').valid || editableFeilds['name'] || !basicDetailsForm.get('name').touched"
                     (click)="saveDetails({name : basicDetailsForm.get('name').value}, 'name')">
                         save
                         <span *ngIf="editableFeilds['name']" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -55,7 +55,7 @@
                 <input class="form-control" type="text"  formControlName="mobileNumber"
                 placeholder="" aria-label="" aria-describedby="mobileNumber">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('mobileNumber').valid || editableFeilds['mobileNumber']"
+                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('mobileNumber').valid || editableFeilds['mobileNumber'] || !basicDetailsForm.get('mobileNumber').touched"
                     (click)="saveDetails({mobileNumber : basicDetailsForm.get('mobileNumber').value}, 'mobileNumber')">
                         save
                         <span *ngIf="editableFeilds['mobileNumber']" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -79,7 +79,7 @@
                 <input class="form-control" type="text" formControlName="addressLine1"
                 placeholder="" aria-label="" aria-describedby="addressLine1">  
                 <div class="input-group-append">
-                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('addressLine1').valid || editableFeilds['addressLine1']"
+                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('addressLine1').valid || editableFeilds['addressLine1'] || !basicDetailsForm.get('addressLine1').touched"
                     (click)="saveDetails({addressLine1 : basicDetailsForm.get('addressLine1').value}, 'addressLine1')">
                         save
                         <span *ngIf="editableFeilds['addressLine1']" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -94,7 +94,7 @@
                 <input class="form-control" type="text" formControlName="country"
                 placeholder="" aria-label="" aria-describedby="country">  
                 <div class="input-group-append">
-                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('country').valid || editableFeilds['country']"
+                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('country').valid || editableFeilds['country'] || !basicDetailsForm.get('country').touched"
                     (click)="saveDetails({country : basicDetailsForm.get('country').value}, 'country')">
                         save
                         <span *ngIf="editableFeilds['country']" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -112,7 +112,7 @@
                 <input class="form-control" type="text" formControlName="state"
                 placeholder="" aria-label="" aria-describedby="state">  
                 <div class="input-group-append">
-                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('state').valid || editableFeilds['state']"
+                    <button class="btn btn-primary" [disabled]="!basicDetailsForm.get('state').valid || editableFeilds['state'] || !basicDetailsForm.get('state').touched"
                     (click)="saveDetails({state : basicDetailsForm.get('state').value}, 'state')">
                         save
                         <span *ngIf="editableFeilds['state']" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -151,9 +151,6 @@
         </div>
 
     </div>
-
-
-
 
 </form>
 </div>
