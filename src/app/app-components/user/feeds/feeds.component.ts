@@ -58,6 +58,7 @@ export class FeedsComponent implements OnInit {
               let post : Post = this.feedsService.convertToPost(response[idx])
               this.posts.push(post)
             }
+            this.currentIndex = 0
             
           }).catch( error => { this.alertService.generateAlert(AlertMessage.getAletMessage('serverDataFetchError'))} )
           .finally(()=>{ this.postsLoading = false })
