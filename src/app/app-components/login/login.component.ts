@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("loggedInUser", JSON.stringify(response)) 
       this.authenticationService.setLoggedInUser(response)
       this.router.navigate([this.returnUrl]);
-    }).catch(error => {debugger
+    }).catch(error => {
       this.alertService.generateAlert(AlertMessage.getAletMessage('invalidLogin'))
       this.loading = false
     })

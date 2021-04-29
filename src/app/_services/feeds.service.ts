@@ -82,7 +82,7 @@ export class FeedsService {
     return this.http.get<any>(ApiPaths.getApiPath('getAllUserPosts', undefined)).toPromise()
   }
 
-  public updatePostByPostId(postId : string, data : any) :Promise<any>{debugger
+  public updatePostByPostId(postId : string, data : any) :Promise<any>{
     return this.http.patch<any>(ApiPaths.getApiPath("upadatePostByPostId", postId), data).toPromise()
   }
 
