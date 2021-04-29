@@ -30,7 +30,6 @@ export class FollowingComponent implements OnInit {
     this.loading = true
     let searchPromise : Promise<any> = this.userService.searchFolloweeConnections()
     searchPromise.then( response=>{
-      console.log(response.followees)
       
       this.processing = new Array<boolean>(response.followees.length)
       if(response.followees.length % this.groupCount == 0){

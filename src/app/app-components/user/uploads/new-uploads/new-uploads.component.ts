@@ -103,7 +103,7 @@ export class NewUploadsComponent implements OnInit {
     }
   }
 
-  addInterest(){debugger
+  addInterest(){
 
     let domainId = this.newUploadForm.get('interest').value
     let domainInterest = this.domains.filter( (domain)=> {  return domain.id == domainId})

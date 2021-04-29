@@ -73,9 +73,7 @@ export class BasicDetailsComponent implements OnInit {
     //fetching user details
     this.userService.getUserDetails().then(
       response => {
-        //console.log(response)
         this.user = this.userService.formUserFromResponse(response)
-        //console.log(this.user)
         this.formBasicDetailsForm()
       }
     ).catch(
@@ -88,7 +86,6 @@ export class BasicDetailsComponent implements OnInit {
     //fetching user interest
     this.userService.getUserInterests().then(
       response => {
-        console.log(response)
         for(let idx in response){
           this.userDomainInterests.push(this.feedsService.getDomainFromResponse(response[idx]))
         }

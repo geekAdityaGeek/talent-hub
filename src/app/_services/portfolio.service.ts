@@ -49,7 +49,6 @@ export class PortfolioService {
     this.userService.getUserPortFolio(userId).then(
       response => {
         this.portfolio = this.formPortfolio(response)
-        console.log(this.portfolio)
         let modalConfig : MatDialogConfig = new MatDialogConfig()
         modalConfig.data = this.portfolio
         modalConfig.minHeight = "500px"

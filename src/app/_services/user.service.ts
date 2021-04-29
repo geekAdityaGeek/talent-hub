@@ -36,7 +36,6 @@ export class UserService {
   }
 
   public formAccomplishmentFromResponse(response : any) : Accomplishment{
-    console.log(response)
     let accomplishment : Accomplishment = new Accomplishment()
     accomplishment.id = response._id
     accomplishment.title = response.title

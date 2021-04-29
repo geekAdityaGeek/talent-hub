@@ -24,7 +24,7 @@ export class PostCardComponent implements OnInit {
     private alertService : AlertService) { }
 
   ngOnInit() {
-    console.log(this.post)
+    
   }
 
   getProfilePicSource(){
@@ -55,7 +55,6 @@ export class PostCardComponent implements OnInit {
     data.parent_type = "Post"
     this.feedsService.increaseLikes(data).then(
       (response) => {
-        console.log(response)
         this.post.likes = response.likes
         this.post.userLike = response.user_like
       }

@@ -23,7 +23,6 @@ export class PortfolioModalComponent implements OnInit {
     private userService : UserService,
     private alerService : AlertService) { 
       this.portfolio = data
-      console.log(this.portfolio)
     }
 
   ngOnInit() {}

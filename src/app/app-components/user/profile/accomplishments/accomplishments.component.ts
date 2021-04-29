@@ -32,7 +32,7 @@ export class AccomplishmentsComponent implements OnInit {
     this.loading = true
     this.userService.getUserDetails().then(
       response => {
-        debugger
+        
         let user = this.userService.formUserFromResponse(response)
         this.accomplishments = user.accomplishments
         
