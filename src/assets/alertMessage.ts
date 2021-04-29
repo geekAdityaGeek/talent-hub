@@ -102,10 +102,12 @@ export class AlertMessage{
         "PortfolioDisplayError" : {
             message : "Unable to generate portfolio view. Please check portfolio id, or try again later",
             type : AlertType.error
+        },
+        
+        "PostDetailError" : {
+            message : "Unable to get post details. Please view again later",
+            type : AlertType.error
         }
-        
-
-        
 
 
 

@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { AlertMessage } from 'src/assets/alertMessage';
 import { PostDetailComponent } from '../_components/post-detail/post-detail.component';
+import { Alert } from '../_model/alert';
 import { Comment } from '../_model/Comment';
 import { Post } from '../_model/post';
+import { AlertService } from './alert.service';
 import { FeedsService } from './feeds.service';
 
 @Injectable({
@@ -12,7 +15,8 @@ import { FeedsService } from './feeds.service';
 export class PostDetailService {
 
   constructor(private modal : MatDialog, 
-    private feedsService : FeedsService) { }
+    private feedsService : FeedsService,
+    private alertService : AlertService) { }
 
   public generateDetailView(post : Post){
     
@@ -31,7 +35,9 @@ export class PostDetailService {
         this.modal.open(PostDetailComponent,modalConfig)
       }
     ).catch(
-      error => {console.log(error)}
+      error => {
+        this.alertService.generateAlert(AlertMessage.getAletMessage("PostDetailError")) 
+      }
     ).finally( )
   }
 
