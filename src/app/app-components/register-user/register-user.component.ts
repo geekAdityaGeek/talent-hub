@@ -18,6 +18,7 @@ export class RegisterUserComponent implements OnInit {
   loading : boolean = false
   confirmPassword : string
   profilePic : File
+  url : string | ArrayBuffer
 
   constructor(private userService : UserService, 
     private alertService : AlertService,
@@ -72,10 +73,19 @@ export class RegisterUserComponent implements OnInit {
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       this.profilePic = event.target.files[0]
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0])
+      reader.onload = (event) => {
+        this.url = (event.target as any).result;
+      }
+
     }
   }
 
   getSource(){
+    if(this.url){
+      return this.url
+    } 
     return '../../assets/images/default_profile_pic.png'
   }
 
