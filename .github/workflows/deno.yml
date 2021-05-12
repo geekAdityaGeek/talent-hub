@@ -40,7 +40,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/talent-hub:latest
 
-  deploying container:
+  deploying-container:
     runs-on: ubuntu-latest
     steps:  
       - name: Build, Push and Release a Docker container to Heroku. 
