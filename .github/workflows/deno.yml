@@ -15,7 +15,7 @@ on:
     branches: [master]
 
 jobs:
-  docker:
+  contanarization:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -39,7 +39,10 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/talent-hub:latest
-      
+
+  deploying container:
+    runs-on: ubuntu-latest
+    steps:  
       - name: Build, Push and Release a Docker container to Heroku. 
         uses: gonuit/heroku-docker-deploy@v1.3.2 
         with:
